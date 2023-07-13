@@ -18,11 +18,12 @@ public class Employer {
     private String name;
     private String description;
     private String location;
-    @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @JsonIgnore
+//    @OneToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
 
+    private long userId;
     @OneToMany(mappedBy = "employer",cascade = CascadeType.ALL)
     private List<Jobs> jobs;
 
@@ -30,12 +31,21 @@ public class Employer {
         // default constructor
     }
 
-    public Employer(String name, String description, String location, User user, List<Jobs> jobs) {
+    public Employer(Long id, String name, String description, String location, long userId, List<Jobs> jobs) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.location = location;
-        this.user = user;
+        this.userId = userId;
         this.jobs = jobs;
+    }
+
+    public Employer(Long id, String name, String description, String location, long userId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.location = location;
+        this.userId = userId;
     }
 
     public Long getId() {
@@ -70,18 +80,14 @@ public class Employer {
         this.location = location;
     }
 
-    @JsonBackReference
-//    @JsonManagedReference
-    public User getUser() {
-        return user;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
-    @JsonManagedReference
-//    @JsonBackReference
     public List<Jobs> getJobs() {
         return jobs;
     }
@@ -97,7 +103,7 @@ public class Employer {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", location='" + location + '\'' +
-                ", userId=" + user +
+                ", userId=" + userId +
                 ", jobs=" + jobs +
                 '}';
     }

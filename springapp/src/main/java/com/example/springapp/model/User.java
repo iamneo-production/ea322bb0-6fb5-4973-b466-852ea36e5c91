@@ -22,20 +22,11 @@ public class User {
 //    private JobSeekers jobSeeker;
 
 
-
-//    public User(String username, String password, String role) {
-//        this.username = username;
-//        this.password = password;
-//        this.role = role;
-//    }
-
     public User(Long id, String username, String password, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
-//        this.employer = employer;
-//        this.jobSeeker = jobSeeker;
     }
 
     public User() {

@@ -1,11 +1,14 @@
 package com.example.springapp.controller;
 
+import com.example.springapp.model.Employer;
 import com.example.springapp.model.JobSeekers;
 import com.example.springapp.model.Jobs;
 import com.example.springapp.model.JobsApplied;
 import com.example.springapp.repository.EmployersRepository;
 import com.example.springapp.service.JobsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,19 +23,35 @@ public class JobsController {
     private JobsService jobsService;
 
     @PostMapping
-    public Jobs createJob(@RequestBody Jobs job) {
+    public ResponseEntity<Jobs> createJob(@RequestBody Jobs job) {
 //        System.out.println(job.toString());
-        return jobsService.createJob(job);
+        try{
+            Jobs createJob= jobsService.createJob(job);
+            return  ResponseEntity.status(HttpStatus.CREATED).body(createJob);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+//        Jobs createJob= jobsService.createJob(job);
+//        return  ResponseEntity.status(HttpStatus.CREATED).body(createJob);
     }
 
     @GetMapping
-    public List<Jobs> getAllJobs() {
-        return jobsService.getAllJobs();
+    public ResponseEntity<List<Jobs>> getAllJobs() {
+        List<Jobs> jobs= jobsService.getAllJobs();
+        return ResponseEntity.ok(jobs);
     }
 
-    @GetMapping("/{id}")
-    public Jobs getJobById(@PathVariable("id") Long id) {
-        return jobsService.getJobById(id);
+    @GetMapping(params = "id")
+    public ResponseEntity<List<Jobs>> getJobById(@RequestParam("id") Long id) {
+        try{
+            List<Jobs> job=jobsService.getJobById(id);
+            if(job.isEmpty()) return ResponseEntity.notFound().build();
+            return ResponseEntity.ok(job);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+//        Jobs job= jobsService.getJobById(id);
+//        return ResponseEntity.ok(job);
     }
 
     @PutMapping

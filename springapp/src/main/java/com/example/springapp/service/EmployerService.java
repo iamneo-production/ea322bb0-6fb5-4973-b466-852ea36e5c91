@@ -7,6 +7,7 @@ import com.example.springapp.repository.JobSeekersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,8 +19,11 @@ public class EmployerService {
     public List<Employer> getAllEmployers() {
         return employersRepository.findAll();
     }
-    public Employer getEmployerById(Long id) {
-        return employersRepository.findById(id).orElse(null);
+    public List<Employer> getEmployerById(Long id) {
+        List<Employer> employer=new ArrayList<>();
+        Employer emp=employersRepository.findById(id).orElse(null);
+        if(emp!=null) employer.add(emp);
+        return employer;
     }
 
     public Employer createEmployer(Employer employer) {
@@ -33,7 +37,7 @@ public class EmployerService {
             existingEmployer.setName(employer.getName());
             existingEmployer.setDescription(employer.getDescription());
             existingEmployer.setLocation(employer.getLocation());
-            existingEmployer.setUser(employer.getUser());
+            existingEmployer.setUserId(employer.getUserId());
             // Save the updated employer
             return employersRepository.save(existingEmployer);
         }

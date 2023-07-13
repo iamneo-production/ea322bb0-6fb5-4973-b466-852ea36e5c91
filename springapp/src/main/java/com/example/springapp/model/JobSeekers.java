@@ -17,10 +17,12 @@ public class JobSeekers {
     private String skills;
     private String experience;
     private String location;
-    @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @JsonIgnore
+//    @OneToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
+
+    private long userId;
 
     @OneToMany(mappedBy = "jobSeekers",cascade = CascadeType.ALL)
     private List<JobsApplied> jobsApplied=new ArrayList<>();
@@ -29,12 +31,22 @@ public class JobSeekers {
         // default constructor
     }
 
-    public JobSeekers(String name, String skills, String experience, String location, User user, List<JobsApplied> jobsApplied) {
+    public JobSeekers(Long id, String name, String skills, String experience, String location, long userId) {
+        this.id = id;
         this.name = name;
         this.skills = skills;
         this.experience = experience;
         this.location = location;
-        this.user = user;
+        this.userId = userId;
+    }
+
+    public JobSeekers(Long id, String name, String skills, String experience, String location, long userId, List<JobsApplied> jobsApplied) {
+        this.id = id;
+        this.name = name;
+        this.skills = skills;
+        this.experience = experience;
+        this.location = location;
+        this.userId = userId;
         this.jobsApplied = jobsApplied;
     }
 
@@ -78,14 +90,12 @@ public class JobSeekers {
         this.location = location;
     }
 
-    @JsonBackReference
-//    @JsonManagedReference
-    public User getUser() {
-        return user;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     //    @JsonManagedReference
@@ -105,7 +115,7 @@ public class JobSeekers {
                 ", skills='" + skills + '\'' +
                 ", experience='" + experience + '\'' +
                 ", location='" + location + '\'' +
-                ", userId=" + user +
+                ", userId=" + userId +
                 ", jobsApplied=" + jobsApplied +
                 '}';
     }

@@ -5,6 +5,7 @@ import com.example.springapp.repository.JobSeekersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,15 +28,19 @@ public class JobSeekersService {
             existingJobSeeker.setSkills(jobSeeker.getSkills());
             existingJobSeeker.setExperience(jobSeeker.getExperience());
             existingJobSeeker.setLocation(jobSeeker.getLocation());
-            existingJobSeeker.setUser(jobSeeker.getUser());
+            existingJobSeeker.setUserId(jobSeeker.getUserId());
             // Save the updated job-seeker
             return jobSeekersRepository.save(existingJobSeeker);
         }
         return null;
     }
 
-    public JobSeekers getJobSeekerById(Long id) {
-        return jobSeekersRepository.findById(id).orElse(null);
+    public List<JobSeekers> getJobSeekerById(Long id) {
+        List<JobSeekers> jobSeeker=new ArrayList<>();
+        JobSeekers js= jobSeekersRepository.findById(id).orElse(null);
+//        js.toString();
+        if(js!=null) jobSeeker.add(js);
+        return jobSeeker;
     }
 
     public void deleteJobSeeker(Long id) {

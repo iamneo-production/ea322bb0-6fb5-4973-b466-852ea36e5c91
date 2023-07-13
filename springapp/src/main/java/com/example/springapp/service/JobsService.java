@@ -41,8 +41,11 @@ public class JobsService {
 //        System.out.println(job.getEmployer().toString());
         return jobsRepository.save(job);
     }
-    public Jobs getJobById(Long id) {
-        return jobsRepository.findById(id).orElse(null);
+    public List<Jobs> getJobById(Long id) {
+        List<Jobs> job=new ArrayList<>();
+        Jobs jb= jobsRepository.findById(id).orElse(null);
+        if(jb!=null) job.add(jb);
+        return job;
     }
     public Jobs editJob(Jobs job) {
         Jobs existingJob = jobsRepository.findById(job.getId()).orElse(null);

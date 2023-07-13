@@ -21,8 +21,6 @@ public class Jobs {
 
     @JsonIgnore
     @ManyToOne
-//    @JsonProperty(value="employer_applied")
-
     @JoinColumn(name = "employer_id")
     private Employer employer;
 
@@ -32,7 +30,18 @@ public class Jobs {
     public Jobs() {
         // default constructor
     }
-    public Jobs(String title, String description, String requirements, String location, Employer employer, List<JobsApplied> jobsApplied) {
+
+    public Jobs(Long id, String title, String description, String requirements, String location, Employer employer) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.requirements = requirements;
+        this.location = location;
+        this.employer = employer;
+    }
+
+    public Jobs(Long id, String title, String description, String requirements, String location, Employer employer, List<JobsApplied> jobsApplied) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.requirements = requirements;
