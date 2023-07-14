@@ -26,7 +26,7 @@ public class EmployersController {
     public ResponseEntity<List<Employer>> getEmployerById(@RequestParam("id") Long id) {
         try{
             List<Employer> employer=employerService.getEmployerById(id);
-            if(employer.isEmpty()) return ResponseEntity.notFound().build();
+            // if(employer.isEmpty()) return ResponseEntity.notFound().build();
             return ResponseEntity.ok(employer);
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
