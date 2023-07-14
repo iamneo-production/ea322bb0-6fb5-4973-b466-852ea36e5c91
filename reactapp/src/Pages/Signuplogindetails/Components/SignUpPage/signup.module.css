@@ -1,0 +1,143 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.main{
+    width:100vw;
+    height:100vh;    
+}
+.head{
+    margin-top: 50px;              
+
+}
+.bottom{
+    width:100vw;
+    height:94vh;
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+    justify-content: center;
+}
+.field{
+    width:54vh;
+    height:86vh;
+    background-color: rgb(208, 228, 248);
+    border-radius:10px;    
+    overflow: scroll;
+    -ms-overflow-style: none;
+  scrollbar-width: none;  
+}
+.field::-webkit-scrollbar {
+    display: none;
+  }
+input{
+    width: 80%;
+    padding: 5px;
+    /* border: 1px solid black; */
+    
+}
+
+.in6{
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    padding: 15px;
+    padding-left: 30px;
+    width:125px;
+    height:6vh;
+    font-size: 15px;
+    cursor:pointer;
+    border:none;
+    border-radius: 8px;
+    background-color:#537FE7; 
+    /* margin-left: 20px; */
+}
+.in7{
+    display: flex;
+    align-items: center;
+    font-size:15px;
+    padding:25px;
+    width:250px;
+    height:5vh;
+    cursor:pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(27, 173, 8);
+}
+
+.show{
+    margin-right: 1px;
+    width:6px;
+    margin-top: 1px;
+    align-items: flex-end;
+    justify-content: flex-end;   
+}
+.signupaccount{
+    margin-left: 180px;
+    font-size:40px;
+    color:rgb(105, 102, 102);
+    margin-top: 6px;    
+}
+/* .signupeye{
+    margin-top:-32px;
+    position: relative;
+    margin-left:318px;
+    color:gray;
+} */
+.signhead{
+    margin-left:156px;
+    color:rgb(39, 37, 37);
+    font-family:monospace;
+}
+.errorMessage{
+    color: red;
+    font-size:small;
+    margin-left:10px;
+    margin-top: -8px;
+}
+.formlayout{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 10px;
+    font-size: medium;
+    color: rgb(80, 79, 79);
+    font-weight: bold;
+}
+.formlayout input{
+    margin-left: 10px;
+}
+.btnsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px; 
+}
+.signupsym{
+    margin-left: 1px;
+    margin-top: 2px;
+}
+
+.lab{
+    font-size:medium;
+    color: rgb(80, 79, 79);
+    font-weight:bold;
+    
+}
+.showhide{
+    margin-left:270px;
+    margin-top:-34px;
+    color: black;
+    font-family:monospace;
+    font-size:large;   
+}
+.showhide1{
+    margin-left: 270px;
+    margin-top: -34px;
+    color: black;
+    font-family: monospace;
+    font-size: larger;
+}
+

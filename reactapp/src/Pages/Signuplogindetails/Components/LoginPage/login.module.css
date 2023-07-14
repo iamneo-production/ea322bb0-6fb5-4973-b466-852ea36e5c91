@@ -1,0 +1,131 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+.main{
+    width:100vw;
+    height:100vh;
+}
+.bottom{
+    width:100vw;
+    height:98vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;    
+}
+.field{
+    width:25vw;
+    height:64vh;
+    background-color: rgb(208, 228, 248);
+    border-radius:10px;  
+    overflow: scroll;
+    -ms-overflow-style: none;
+  scrollbar-width: none;  
+} 
+.field::-webkit-scrollbar {
+    display: none;
+}
+.in5{     
+    display: flex;
+    padding: 15px;
+    width:125px;
+    height:6vh;
+    font-size: 15px;
+    cursor: pointer;
+    border:none;
+    border-radius: 8px;
+    background-color:#537FE7; 
+    padding-left:36px;
+    padding-bottom: 14px;
+}  
+.in6{
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    padding: 15px;
+    width:250px;
+    height:6vh;
+    cursor:pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(27, 173, 8);
+    margin-top: 5px;
+}
+
+.head{
+    margin-top: 90px;
+}
+.term{
+    margin-left:60px;
+    margin-top:12px;
+    font-weight:lighter;
+    font-size:small;
+}
+.error{
+    font-size:small ;
+    margin-left:10px;
+    margin-top: -8px;
+}
+.account{
+    margin-left: 170px;
+    margin-top: 8px;
+    font-size:42px;
+    color:rgb(105, 102, 102);
+}
+.loginsym{
+    margin-left:220px;
+    margin-top:-34px;
+    position:absolute;
+    color:rgb(39, 37, 37);
+}
+.loginhead{
+    margin-left:156px;
+    color: #1b2c3b;
+    font-family:monospace;
+}
+input{
+    display: block;
+    width: 80%;
+    padding: 5px;
+}
+.btnsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px; 
+}
+.formlayout{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 10px;
+    font-size: medium;
+    color: rgb(80, 79, 79);
+    font-weight: bold;
+}
+.formlayout input{
+    margin-left: 10px;
+}
+label,a{
+    padding-left: 10px;
+}
+.lab1{
+    font-size:medium;
+    font-weight: bold;
+    color: rgb(80, 79, 79);
+}
+.showhide{
+    margin-left:256px;
+    font-family: monospace;
+    color: black;
+    font-size: larger;
+    margin-top:-34px;
+}
+.errorMessage{
+    color: red;
+    font-size:small;
+    margin-left:10px;
+    margin-top: -8px;
+}
