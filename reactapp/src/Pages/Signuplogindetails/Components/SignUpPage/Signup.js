@@ -136,11 +136,11 @@ function Signup() {
                             <h1 className={classes.signhead}>SignUp</h1>
                             <div className={classes.formlayout}>
                                 <div>
-                                    <label >Select a role</label>
-                                    <Dropdown placeholder={'Select a role'} defaultValue={'Job seeker'} options={options} onChange={selectRole}  />
+                                    <label style={{marginBottom:"-15%"}}>Select a role</label>
+                                    <Dropdown placeholder={'Select a role'}  defaultValue={'Job seeker'} options={options} onChange={selectRole}  />
                                 </div>
 
-                                <label className={classes.lab}>First name</label>
+                                <label className={classes.lab} style={{marginTop:"2%"}}>First name</label>
                                 <input className={classes.in1} name="fname" type="text" placeholder="First name" value={formValues.fname} onChange={handleInputChange} required="required"></input>
                                 {formErrors.fname && <p className={classes.errorMessage}>{formErrors.fname}</p>}
 
@@ -157,14 +157,14 @@ function Signup() {
                                 <label  className={classes.showhide} onClick={handleShow}>{show?"Hide":"show"}</label>
                                 {formErrors.psd && <p className={classes.errorMessage}>{formErrors.psd}</p>}
                                
-                                <label className={classes.lab}>Enter confirm password</label>
+                                <label className={classes.lab} style={{marginTop:"-4%"}}>Enter confirm password</label>
                                 <input className={classes.in5} name="cpsd" type={showw?"text":"password"} placeholder="Enter confirm password" value={formValues.cpsd} onChange={handleInputChange} required="required"></input>
                                 <label  className={classes.showhide1} onClick={handlerShow}>{showw?"Hide":"show"}</label>
-                                {formErrors.cpsd && <p className={classes.errorMessage}>{formErrors.cpsd}</p>}
+                                {formErrors.cpsd && <p style={{marginTop:"2%"}} className={classes.errorMessage}>{formErrors.cpsd}</p>}
                             </div>
                             <div className={classes.btnsContainer}>
                                 <button className={classes.in6} type="submit"  value='SignUp' onClick={() => CheckUser()} ><span>Signup</span><span className={classes.signupsym}><IoMdLogIn /></span></button>
-                                <button className={classes.in7} type="button" onClick={() => navigate("/login")}>Have an account? Login</button>
+                                <button className={classes.in7} style={{marginBottom:"25px"}}type="button" onClick={() => navigate("/login")}>Have an account? Login</button>
                             </div>
                         </div>
                     </fieldset>
@@ -179,3 +179,4 @@ export default Signup;
 
 
 
+ 
