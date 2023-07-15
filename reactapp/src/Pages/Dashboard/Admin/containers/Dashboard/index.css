@@ -1,0 +1,12 @@
+.welcome-message{
+    color: black;
+    font-size: 20px;
+    font-size:'20px';
+    position:absolute;
+    z-index:10;
+}
+.cover-image{
+    position:absolute;
+    right: 0;
+    top: 0;
+}
