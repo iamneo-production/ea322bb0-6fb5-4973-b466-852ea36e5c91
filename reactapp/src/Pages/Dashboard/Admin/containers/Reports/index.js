@@ -9,7 +9,6 @@ function Reports() {
 
 
     const defaultTitle = () => 'Reports';
-
     const [hasData, setHasData] = useState(true); // state is required
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');

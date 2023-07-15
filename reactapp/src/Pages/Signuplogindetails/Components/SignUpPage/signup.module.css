@@ -1,49 +1,42 @@
 *{
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+    box-sizing: border-box;   
 }
 .main{
     width:100vw;
-    height:100vh;    
-}
+    height:100vh;        
+}   
 .head{
     margin-top: 50px;              
-
+    right: 20%;   
 }
 .bottom{
-    width:100vw;
+    width:75vw;
     height:94vh;
     display: flex;
     align-items: center;
     flex-direction:column;
     justify-content: center;
+    margin-left: 12%; 
 }
 .field{
     width:54vh;
-    height:86vh;
+    height:89vh;
     background-color: rgb(208, 228, 248);
     border-radius:10px;    
     overflow: scroll;
-    -ms-overflow-style: none;
-  scrollbar-width: none;  
+    -ms-overflow-style:none;
+    scrollbar-width: none;  
+    margin-right: 25%;
 }
 .field::-webkit-scrollbar {
     display: none;
-  }
-input{
-    width: 80%;
-    padding: 5px;
-    /* border: 1px solid black; */
-    
 }
-
 .in6{
     display: flex;
-    /* align-items: center; */
-    /* justify-content: space-between; */
     padding: 15px;
-    padding-left: 30px;
+    padding-left: 28px;
     width:125px;
     height:6vh;
     font-size: 15px;
@@ -51,7 +44,9 @@ input{
     border:none;
     border-radius: 8px;
     background-color:#537FE7; 
-    /* margin-left: 20px; */
+    right: 20%;
+    margin-top: 3%;
+    padding-top: 10px;
 }
 .in7{
     display: flex;
@@ -64,37 +59,33 @@ input{
     border: none;
     border-radius: 8px;
     background-color: rgb(27, 173, 8);
+    padding-left: 50px;
+    
 }
-
-.show{
+/* .show{
     margin-right: 1px;
     width:6px;
     margin-top: 1px;
     align-items: flex-end;
     justify-content: flex-end;   
-}
+} */
 .signupaccount{
     margin-left: 180px;
     font-size:40px;
     color:rgb(105, 102, 102);
     margin-top: 6px;    
 }
-/* .signupeye{
-    margin-top:-32px;
-    position: relative;
-    margin-left:318px;
-    color:gray;
-} */
 .signhead{
     margin-left:156px;
     color:rgb(39, 37, 37);
     font-family:monospace;
+    font-size: 24px;
 }
 .errorMessage{
     color: red;
     font-size:small;
     margin-left:10px;
-    margin-top: -8px;
+    margin-top: -9px;  
 }
 .formlayout{
     display: flex;
@@ -103,7 +94,7 @@ input{
     padding-left: 10px;
     font-size: medium;
     color: rgb(80, 79, 79);
-    font-weight: bold;
+    font-weight: bold;    
 }
 .formlayout input{
     margin-left: 10px;
@@ -113,31 +104,64 @@ input{
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    margin-top: 20px; 
+    margin-top: 20px;     
 }
 .signupsym{
     margin-left: 1px;
-    margin-top: 2px;
+    margin-top: 0px;
 }
-
 .lab{
     font-size:medium;
     color: rgb(80, 79, 79);
     font-weight:bold;
-    
+    margin-left: -1%;
+    margin-top: -1%;
 }
 .showhide{
-    margin-left:270px;
-    margin-top:-34px;
+    margin-left:268px;
+    margin-top:-68px;
     color: black;
     font-family:monospace;
     font-size:large;   
+    margin-bottom: 5%;
 }
 .showhide1{
-    margin-left: 270px;
-    margin-top: -34px;
+    margin-left: 268px;
+    margin-top: -42px;
     color: black;
     font-family: monospace;
     font-size: larger;
+}
+.in1{
+    margin-left: 1%;
+    width:80%;
+    margin-top: -1%;
+    height: 28px;
+}
+.in2{
+    margin-left: 1%;
+    width: 80%;
+    margin-top: -1%;
+    height: 28px;
+}
+.in3{
+    margin-left: 1%;
+    width: 80%;
+    margin-top: -1%;
+    height: 28px;
+}
+.in4{
+    margin-left: 1%;
+    width: 80%;
+    margin-top: -1%;
+    margin-bottom: 8%;
+    height: 28px;    
+}
+.in5{
+    margin-left: 1%;
+    width: 80%;
+    margin-top: -1%;
+    margin-bottom: 2%;
+    height: 28px;
 }
 
