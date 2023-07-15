@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/jobs")
@@ -37,7 +38,7 @@ public class JobsController {
 
     @GetMapping
     public ResponseEntity<List<Jobs>> getAllJobs() {
-        List<Jobs> jobs= jobsService.getAllJobs();
+        List<Jobs> jobs=  new ArrayList<>();
         return ResponseEntity.ok(jobs);
     }
 
