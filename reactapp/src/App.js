@@ -8,8 +8,6 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 // import SignUpPage from "./Pages/Signuplogindetails/Components/SignUpPage/Signup";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import JobSearchPage from './Pages/JobSearch/JobSearchPage';
-import EmployerEditProfile from './Pages/Employer/Components/EmployerEditProfile';
-import EmployerProfile from './Pages/Employer/Components/EmployerProfile';
 
 //adding comment
 function App() {
@@ -25,11 +23,7 @@ function App() {
           {/* <Route path='/' element ={<HomePage/>}/>
           <Route path='/signup' element ={<SignUpPage/>}/>  
           <Route path='/login' element ={<Login/>}/>  */}
-          <Routes>
-          <Route path="/empeditprofile" element={<EmployerEditProfile />} />
-          <Route path="/empprofile/:id" element={<EmployerProfile />} />
-          </Routes>
-          {/*<JobSearchPage /> */}
+          <JobSearchPage />
 
         {/* </Routes> */}
       </Router>   
