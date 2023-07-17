@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 node_modules/
-=======
 .settings/
 .project
 .classpath
 # node_modules/
->>>>>>> c569744b889560baac05e89b0c84d5431625c6e5
 done
