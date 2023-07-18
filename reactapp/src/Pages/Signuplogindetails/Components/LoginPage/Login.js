@@ -60,12 +60,16 @@ function Login() {
     const CheckUser1=()=>{
         // validatedetails()
         if (Object.values(formErrors).every(error => error === '')){
-        const apiuser="http://localhost:8080/user/check/"+formValues.email
-        axios.get(apiuser)
-                .then(res => {
-                    if(res.data){
-                       const apipcheck="http://localhost:8080/user/checkpassword/"+formValues.email+ "/" +formValues.psd
-                       axios.get(apipcheck)
+        const api="http://localhost:8080/user/check/"+formValues.email
+        axios.get(api,{
+            "username":formValues.email,
+            "password":formValues.psd,
+            "role":formValues.role
+        })
+                // .then(res => {
+                //     if(res.data){
+                //        const apipcheck="http://localhost:8080/user/checkpassword/"+formValues.email+ "/" +formValues.psd
+                //        axios.get(apipcheck)
                        .then((response)=>{
                         if(response.data){
                             alert("Login success")
@@ -75,15 +79,15 @@ function Login() {
                                 role: 'Admin'
                             })
                         }else{
-                            alert("Password is not correct")
+                            alert("Enter correct details")
                         }
                        })
-                    }
-                    else{
-                        alert("Email not exist")
-                    }    
-                })
-                .catch(err => (console.log(err)))
+                //     }
+                //     else{
+                //         alert("Email not exist")
+                //     }    
+                // })
+                
     };
 }
 

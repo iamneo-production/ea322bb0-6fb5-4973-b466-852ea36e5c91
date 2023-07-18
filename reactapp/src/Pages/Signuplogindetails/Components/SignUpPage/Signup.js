@@ -97,35 +97,37 @@ function Signup() {
 
     const CheckUser=()=>{
         if (Object.values(formErrors).every(error => error === '')){   
-        const apiuser="http://localhost:8080/user/check/"+formValues.email
-        axios.get(apiuser)
-                .then(res => {
-                    if(!res.data){
                         const api ="http://localhost:8080/user/register"
                         axios.post(api,{
-                            "first_name":formValues.fname,
-                            "last_name":formValues.lname,
-                            "email":formValues.email,
+                            "fname":formValues.fname,
+                            "lname":formValues.lname,
+                            "username":formValues.email,
                             "password":formValues.psd,
-                            "conform_password":formValues.cpsd
-                        }) 
-                        setFormValues({
-                            fname: '',
-                            lname: '',
-                            email: '',
-                            psd: '',
-                            cpsd: '',
-                            role: 'Job seeker'
+                            "cpsd":formValues.cpsd,
+                            "role":'job seeker'
                         })
-                    }
-                    else{
-                        alert("Email already exists")
-                    }    
-                })
-                .catch(err => (console.log(err)))
+                        .then(res=>{
+                            setFormValues({
+                                fname: '',
+                                lname: '',
+                                email: '',
+                                psd: '',
+                                cpsd: '',
+                                role: 'Job seeker'
+                            })
+
+                        }) 
+                        .catch(err=>{
+                            if(err.response.status===500){
+                                alert("user email alreday exist");
+                            }
+                            console.log(err)
+                        })
+                        
+                }
+                    
     };
-}
-    
+ 
     return (
         <div className={classes.main} style={{ backgroundImage: `url(${img15})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}>
             <div className={classes.bottom}>
@@ -148,8 +150,8 @@ function Signup() {
                                 <input className={classes.in2} name="lname" type="text" placeholder="Last name" value={formValues.lname} onChange={handleInputChange} required="required"></input>
                                 {formErrors.lname && <p className={classes.errorMessage}>{formErrors.lname}</p>}
 
-                                <label className={classes.lab}>Enter mail</label>
-                                <input className={classes.in3} name="email" type="text" placeholder="Enter email" value={formValues.email} onChange={handleInputChange} required="required"></input>
+                                <label className={classes.lab}>Enter mail/Username</label>
+                                <input className={classes.in3} name="email or Username" type="text" placeholder="Enter email" value={formValues.email} onChange={handleInputChange} required="required"></input>
                                 {formErrors.email && <p className={classes.errorMessage}>{formErrors.email}</p>}
 
                                 <label className={classes.lab}>Enter password</label>
