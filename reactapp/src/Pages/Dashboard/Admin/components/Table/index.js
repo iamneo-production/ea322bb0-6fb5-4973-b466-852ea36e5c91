@@ -2,11 +2,8 @@ import { Table } from "antd";
 import "./index.css";
 
 const MyTable = (props) => {
-  const { columns, data, hasData, setHasData, defaultTitle } = props;
+  const { columns, data, hasData, defaultTitle } = props;
 
-  const handleDataChange = (newHasData) => {
-    setHasData(newHasData);
-  };
 
   const tableColumns = columns.map((item, key) => ({
     ...item,
