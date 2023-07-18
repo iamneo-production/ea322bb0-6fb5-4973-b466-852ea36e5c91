@@ -12,7 +12,7 @@ function Dashboard({ setContent }) {
   const [statistics, setStatistics] = useState({});
   useEffect(() => {
     loadStatistics();
-  }, [companies, statistics]);
+  }, [statistics]);
 
   const loadStatistics = async () => {
     const result = await axios.get("http://localhost:4000/admin/statistics");
