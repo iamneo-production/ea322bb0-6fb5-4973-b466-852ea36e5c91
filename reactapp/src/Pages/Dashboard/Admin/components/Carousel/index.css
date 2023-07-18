@@ -1,0 +1,46 @@
+.card {
+    color: #fff;
+    text-align: center;
+    background: #8282f299;
+    margin: 0;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.card-image {
+    position: relative;
+    display: inherit;
+}
+
+.card-image>img {
+    object-fit: contain;
+    top: 0;
+    height: 150px;
+    margin: 0;
+}
+
+.card-title {
+    color: black;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.slick-dots.slick-dots-bottom {
+    bottom: 0;
+    color: yellow;
+}
+
+.slick-slide {
+    margin-left: 25px;
+}
+
+.slick-list {
+    margin-left: -25px;
+    height: 270px;
+} 
+.slick-dots.slick-dots-bottom li{
+    background: #4e44fb87;
+}
+.slick-dots.slick-dots-bottom li.slick-active > button{
+    background: black;
+}
