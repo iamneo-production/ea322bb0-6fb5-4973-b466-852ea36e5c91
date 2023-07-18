@@ -43,14 +43,6 @@ function Login() {
         
     });
      
-    const validatedetails=()=>{   
-        if(!validateEmail(formValues.email)){
-            setFormErrors(
-                {...formErrors,email: "Email format is invalid"}
-            )    
-        }
-    }
-    
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
@@ -66,7 +58,7 @@ function Login() {
     };
 
     const CheckUser1=()=>{
-        validatedetails()
+        // validatedetails()
         if (Object.values(formErrors).every(error => error === '')){
         const apiuser="http://localhost:8080/user/check/"+formValues.email
         axios.get(apiuser)
@@ -132,16 +124,16 @@ function Login() {
                     <form onSubmit={handleSubmit}>
                     <div className={classes.formlayout}>
                         <div>
-                        <label>Select a role</label>
+                        <label className="role">Select a role</label>
                             <Dropdown placeholder={'Select a Role'}  defaultValue={'Admin'} options={options} onChange={selectRole}  />
                         </div>
                             
-                            <label className={classes.lab}>Enter mail</label>
-                                <input className={classes.in3} name="email" type="text" placeholder="Enter email" value={formValues.email} onChange={handleInputChange} required="required"></input>
+                            <label className={classes.lab} style={{marginTop:"1%"}}>Enter mail</label>
+                                <input className={classes.in1} name="email" type="text" placeholder="Enter email" value={formValues.email} onChange={handleInputChange} required="required"></input>
                                 {formErrors.email && <p className={classes.errorMessage}>{formErrors.email}</p>}
 
-                            <label className={classes.lab}>Enter password</label>
-                                <input className={classes.in4} name="psd" type={show?"text":"password"} placeholder="Enter password" value={formValues.psd} onChange={handleInputChange} required="required"></input>
+                            <label className={classes.lab} style={{marginTop:"-2%"}}>Enter password</label>
+                                <input className={classes.in2} name="psd" type={show?"text":"password"} placeholder="Enter password" value={formValues.psd} onChange={handleInputChange} required="required"></input>
                                 <label  className={classes.showhide} onClick={handleShow}>{show?"Hide":"show"}</label>
                                 {formErrors.psd && <p className={classes.errorMessage}>{formErrors.psd}</p>}
 
@@ -149,14 +141,14 @@ function Login() {
                             </div>
                             <div className={classes.btnsContainer}>
                             <button
-                                className={classes.in5}
+                                className={classes.in3}
                                 type="submit"
                                 value="Login"
                                 onClick={() => CheckUser1()}
                             >
-                                <span>Login</span><span className={classes.loginsym}></span><IoMdLogIn />
+                                 <span style={{marginTop:"-7%"}}>Login</span><span className={classes.loginsym}></span><IoMdLogIn /> 
                             </button>
-                            <button className={classes.in6} onClick={loginhandler}>Don't have an account? Create now</button>
+                            <button className={classes.in4} onClick={loginhandler}>Don't have an account? Create now</button>
                             </div>
                         </form>
                     </div>

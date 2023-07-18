@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/jobs")
@@ -37,7 +38,7 @@ public class JobsController {
 
     @GetMapping
     public ResponseEntity<List<Jobs>> getAllJobs() {
-        List<Jobs> jobs= jobsService.getAllJobs();
+        List<Jobs> jobs=  new ArrayList<>();
         return ResponseEntity.ok(jobs);
     }
 
@@ -45,7 +46,7 @@ public class JobsController {
     public ResponseEntity<List<Jobs>> getJobById(@RequestParam("id") Long id) {
         try{
             List<Jobs> job=jobsService.getJobById(id);
-            if(job.isEmpty()) return ResponseEntity.notFound().build();
+            // if(job.isEmpty()) return ResponseEntity.notFound().build();
             return ResponseEntity.ok(job);
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

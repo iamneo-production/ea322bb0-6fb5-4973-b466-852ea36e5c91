@@ -1,11 +1,11 @@
 *{
     padding:0;
     margin:0;
-    box-sizing: border-box;
+    box-sizing: border-box;   
 }
 .main{
     width:100vw;
-    height:100vh;
+    height:100vh;   
 }
 .bottom{
     width:100vw;
@@ -21,12 +21,26 @@
     border-radius:10px;  
     overflow: scroll;
     -ms-overflow-style: none;
-  scrollbar-width: none;  
+    scrollbar-width: none;    
 } 
 .field::-webkit-scrollbar {
     display: none;
 }
-.in5{     
+.in1{
+    width: 80%;
+    margin-top: -1%;
+    margin-bottom: 2%;
+    height: 28px;
+    margin-left: 50%;
+}
+.in2{
+    width: 80%;
+    margin-top: -1%;
+    margin-bottom: 10%;
+    margin-left: 50%;
+    height: 28px;
+}
+.in3{     
     display: flex;
     padding: 15px;
     width:125px;
@@ -38,8 +52,9 @@
     background-color:#537FE7; 
     padding-left:36px;
     padding-bottom: 14px;
+    margin-left: -2%; 
 }  
-.in6{
+.in4{
     display: flex;
     align-items: center;
     font-size: 13px;
@@ -50,11 +65,26 @@
     border: none;
     border-radius: 8px;
     background-color: rgb(27, 173, 8);
-    margin-top: 5px;
+    margin-top: 4px;
+    margin-left: 22%;
+    margin-right: 24%;
 }
-
+/* .in1{
+    width: 80%;
+    margin-top: -1%;
+    margin-bottom: 2%;
+    height: 28px;
+    margin-left: 50%;
+}
+.in2{
+    width: 80%;
+    margin-top: -1%;
+    margin-bottom: 10%;
+    margin-left: 50%;
+    height: 28px;
+} */
 .head{
-    margin-top: 90px;
+    margin-top: 90px;    
 }
 .term{
     margin-left:60px;
@@ -62,27 +92,21 @@
     font-weight:lighter;
     font-size:small;
 }
-.error{
-    font-size:small ;
-    margin-left:10px;
-    margin-top: -8px;
-}
 .account{
     margin-left: 170px;
     margin-top: 8px;
     font-size:42px;
-    color:rgb(105, 102, 102);
+    color:rgb(38, 35, 35);
 }
 .loginsym{
-    margin-left:220px;
-    margin-top:-34px;
-    position:absolute;
-    color:rgb(39, 37, 37);
+    margin-left: 1%;
 }
 .loginhead{
-    margin-left:156px;
-    color: #1b2c3b;
+   
+    color: #363737;
     font-family:monospace;
+    margin-left: 158px;
+    font-size:24px ;
 }
 input{
     display: block;
@@ -96,7 +120,7 @@ input{
     align-items: center;
     margin-top: 20px; 
 }
-.formlayout{
+ .formlayout{
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -104,28 +128,55 @@ input{
     font-size: medium;
     color: rgb(80, 79, 79);
     font-weight: bold;
+    margin-left: -2%;
 }
 .formlayout input{
-    margin-left: 10px;
-}
+    margin-left:4%;
+    width: 80%;
+} 
 label,a{
-    padding-left: 10px;
+    padding-left: 15px;    
 }
 .lab1{
     font-size:medium;
     font-weight: bold;
-    color: rgb(80, 79, 79);
+    color: rgb(80, 79, 79);    
 }
 .showhide{
-    margin-left:256px;
+    margin-left:260px;
     font-family: monospace;
     color: black;
     font-size: larger;
-    margin-top:-34px;
+    margin-top:-72px;
 }
 .errorMessage{
     color: red;
     font-size:small;
     margin-left:10px;
-    margin-top: -8px;
+    margin-top: -4%;
+    padding: 3px;
+    margin-bottom: -2%;   
+}
+
+/* .in1{
+    width: 80%;
+    margin-top: -1%;
+    margin-bottom: 2%;
+    height: 28px;
+    margin-left: 50%;
+}
+.in2{
+    width: 80%;
+    margin-top: -1%;
+    margin-bottom: 10%;
+    margin-left: 50%;
+    height: 28px;
+} */
+.psd{
+    color: rgb(33, 8, 132);
+    text-decoration: underline;
+    margin-top: -1%;
+}
+.lab{
+    margin-top: 4%;
 }

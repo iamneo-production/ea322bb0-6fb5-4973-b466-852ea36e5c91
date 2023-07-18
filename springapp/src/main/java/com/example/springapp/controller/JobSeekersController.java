@@ -37,7 +37,7 @@ public class JobSeekersController {
     public ResponseEntity<List<JobSeekers>> getJobSeekerById(@RequestParam("id") Long id) {
         try{
             List<JobSeekers> jobSeeker=jobSeekersService.getJobSeekerById(id);
-            if(jobSeeker.isEmpty()) return ResponseEntity.notFound().build();
+            // if(jobSeeker.isEmpty()) return ResponseEntity.notFound().build();
             return ResponseEntity.ok(jobSeeker);
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
