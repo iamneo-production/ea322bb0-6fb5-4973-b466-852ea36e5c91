@@ -41,3 +41,8 @@
 .fullname {
   margin-top: 25px;
 }
+
+::placeholder { 
+  filter: contrast(900%);
+  font-weight: bolder;
+}
