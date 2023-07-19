@@ -29,16 +29,6 @@ public class JobsService {
         return jobsRepository.findAllJobs();
     }
     public Jobs createJob(Jobs job) {
-//        Jobs jobs=new Jobs();
-////        jobs.setEmployer(new Employer("SM","java hiring","kol",1215L,null));
-//        jobs.setTitle(job.getTitle());
-//        jobs.setDescription(job.getDescription());
-//        jobs.setRequirements(job.getRequirements());
-//        jobs.setJobsApplied(job.getJobsApplied());
-//        jobs.setLocation(job.getLocation());
-//        jobs.setEmployer(job.getEmployer());
-//        return jobsRepository.save(jobs);
-//        System.out.println(job.getEmployer().toString());
         return jobsRepository.save(job);
     }
     public List<Jobs> getJobById(Long id) {
@@ -64,16 +54,6 @@ public class JobsService {
         jobsRepository.deleteById(id);
     }
     public List<Jobs> getJobsByEmployer(Long employerId) {
-//        Logic to retrieve jobs posted by an employer
-//        return null;
-
-//        List<Long> getJobsIdByEmployer= employersRepository.selectJobIdsByemplyerId(employerId);
-//        List<Jobs> jobsList=new ArrayList<>();
-//        for(int i=0;i<getJobsIdByEmployer.size();i++){
-//            jobsList.add(jobsRepository.findById(getJobsIdByEmployer.get(i)).orElse(null));
-//        }
-//        return jobsList;
-
         List<Jobs> jobsList=jobsRepository.findJobsByEmployerId(employerId);
         return jobsList;
     }
@@ -88,28 +68,12 @@ public class JobsService {
     }
 
     public List<Jobs> getJobsAppliedByJobSeeker(Long jobSeekerId) {
-        // Logic to retrieve jobs applied by a job seeker
-//        List<Long> selectJobIdsByJobSeekerId= jobsAppliedRepository.selectJobIdsByJobSeekerId(jobSeekerId);
-//        List<Jobs> jobsAppliedList=new ArrayList<>();
-//        for(int i=0;i<selectJobIdsByJobSeekerId.size();i++){
-//            jobsAppliedList.add(jobsRepository.findById(selectJobIdsByJobSeekerId.get(i)).orElse(null));
-//        }
-//        return jobsAppliedList;
-
         List<Jobs> jobsAppliedList=jobsRepository.findJobsByJobseekerId(jobSeekerId);
         return jobsAppliedList;
 
     }
 
     public List<JobSeekers> getApplicationsForJob(Long jobId) {
-        // Logic to retrieve applications for a job
-//        List<Long> selectJobApplicantsByJobId= jobsAppliedRepository.selectJobApplicantsByJobId(jobId);
-//        List<JobSeekers> jobsApplieds=new ArrayList<>();
-//        for(int i=0;i<selectJobApplicantsByJobId.size();i++){
-//            jobsApplieds.add(jobSeekersRepository.findById(selectJobApplicantsByJobId.get(i)).orElse(null));
-//        }
-//        return jobsApplieds;
-
         List<JobSeekers> jobAppliedList=jobSeekersRepository.findJobseekersByJobId(jobId);
         return jobAppliedList;
 

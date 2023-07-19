@@ -38,7 +38,6 @@ public class JobSeekersService {
     public List<JobSeekers> getJobSeekerById(Long id) {
         List<JobSeekers> jobSeeker=new ArrayList<>();
         JobSeekers js= jobSeekersRepository.findById(id).orElse(null);
-//        js.toString();
         if(js!=null) jobSeeker.add(js);
         return jobSeeker;
     }

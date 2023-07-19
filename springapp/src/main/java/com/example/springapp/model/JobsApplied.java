@@ -38,7 +38,6 @@ public class JobsApplied {
         this.id = id;
     }
 
-//    @JsonBackReference
     public JobSeekers getJobSeekers() {
         return jobSeekers;
     }
@@ -47,7 +46,6 @@ public class JobsApplied {
         this.jobSeekers = jobSeekers;
     }
 
-//    @JsonBackReference
     public Jobs getJobs() {
         return jobs;
     }

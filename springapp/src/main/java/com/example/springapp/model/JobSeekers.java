@@ -17,11 +17,6 @@ public class JobSeekers {
     private String skills;
     private String experience;
     private String location;
-//    @JsonIgnore
-//    @OneToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
-
     private long userId;
 
     @OneToMany(mappedBy = "jobSeekers",cascade = CascadeType.ALL)
@@ -98,7 +93,6 @@ public class JobSeekers {
         this.userId = userId;
     }
 
-    //    @JsonManagedReference
     public List<JobsApplied> getJobsApplied() {
         return jobsApplied;
     }

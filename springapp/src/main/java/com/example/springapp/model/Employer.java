@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Employer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +17,6 @@ public class Employer {
     private String name;
     private String description;
     private String location;
-//    @JsonIgnore
-//    @OneToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
 
     private long userId;
     @OneToMany(mappedBy = "employer",cascade = CascadeType.ALL)

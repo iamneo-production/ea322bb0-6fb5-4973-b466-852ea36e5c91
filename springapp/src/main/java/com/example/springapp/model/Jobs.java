@@ -91,7 +91,6 @@ public class Jobs {
     }
 
     @JsonBackReference
-//    @JsonManagedReference
     public Employer getEmployer() {
         return employer;
     }
@@ -100,7 +99,6 @@ public class Jobs {
         this.employer = employer;
     }
 
-//    @JsonManagedReference
     public List<JobsApplied> getJobsApplied() {
         return jobsApplied;
     }

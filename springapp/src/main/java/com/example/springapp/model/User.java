@@ -14,19 +14,16 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private String firstName;
+    private String lastName;
 
-//    @OneToOne(mappedBy = "user")
-//    private Employer employer;
-//
-//    @OneToOne(mappedBy = "user")
-//    private JobSeekers jobSeeker;
-
-
-    public User(Long id, String username, String password, String role) {
+    public User(Long id, String username, String password, String role, String firstName, String lastName) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public User() {
@@ -65,25 +62,21 @@ public class User {
         this.role = role;
     }
 
-//    @JsonManagedReference
-//    @JsonBackReference
-//    public Employer getEmployer() {
-//        return employer;
-//    }
-//
-//    public void setEmployer(Employer employer) {
-//        this.employer = employer;
-//    }
-//
-////    @JsonManagedReference
-//    @JsonBackReference
-//    public JobSeekers getJobSeeker() {
-//        return jobSeeker;
-//    }
-//
-//    public void setJobSeeker(JobSeekers jobSeeker) {
-//        this.jobSeeker = jobSeeker;
-//    }
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     @Override
     public String toString() {
@@ -92,6 +85,8 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }
