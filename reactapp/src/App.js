@@ -15,11 +15,19 @@ import Contact from "./Pages/LandingPage/Components/Contact";
 
 import Errorpage from './Pages/LandingPage/Components/Errorpage';
 import JobseekerDashboard from "./Pages/Dashboard/Jobseeker_Dashboard/JobseekerDashboard";
+import Navbar from './Pages/PostJobAndEditJob/components/Navbar';
+import Home from './Pages/PostJobAndEditJob/components/Home.js';
+import AddJob from './Pages/PostJobAndEditJob/jobs/AddJob.js';
+import EditJob from './Pages/PostJobAndEditJob/jobs/EditJob.js';
+import ViewJob from './Pages/PostJobAndEditJob/jobs/ViewJob.js';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //adding comment
 function App() {
   return (
     <div className="App">
       <Router>
+          <Navbar />
           <Routes>  
           <Route path="/" element={<Home1 />} />
           <Route path="/about" element={<About />} />
@@ -38,8 +46,19 @@ function App() {
         
           
         {/* <JobseekerDashboard /> */}
+          
+            <Route path="/empeditprofile" element={<EmployerEditProfile />} />
+            <Route path="/empprofile/:id" element={<EmployerProfile />} />
+        
+          
+            <Route path='/' element={<Home />}/>
+            <Route path='/addjob' element={<AddJob />} />
+            <Route path='/editjob/:id' element={<EditJob />} />
+            <Route path='/viewjob/:id' element={<ViewJob />} />
+          
        
-           </Routes>   
+           </Routes>  
+           <ToastContainer /> 
       </Router>   
     </div>
   );
