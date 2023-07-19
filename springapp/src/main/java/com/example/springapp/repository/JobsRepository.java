@@ -9,8 +9,6 @@ import java.util.List;
 
 @Repository
 public interface JobsRepository extends JpaRepository<Jobs,Long> {
-//    @Query(value="select job_id from Jobs where employer_id=?",nativeQuery = true)
-//    public List<Long> findJobIdsByEmployerId(Long employee_id);
 
     @Query(value = "select * from Jobs", nativeQuery = true)
     public List<Jobs> findAllJobs();

@@ -25,20 +25,18 @@ public class JobsController {
 
     @PostMapping
     public ResponseEntity<Jobs> createJob(@RequestBody Jobs job) {
-//        System.out.println(job.toString());
         try{
             Jobs createJob= jobsService.createJob(job);
             return  ResponseEntity.status(HttpStatus.CREATED).body(createJob);
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-//        Jobs createJob= jobsService.createJob(job);
-//        return  ResponseEntity.status(HttpStatus.CREATED).body(createJob);
     }
 
     @GetMapping
     public ResponseEntity<List<Jobs>> getAllJobs() {
-        List<Jobs> jobs=  new ArrayList<>();
+        // List<Jobs> jobs=  new ArrayList<>();
+        List<Jobs> jobs= jobsService.getAllJobs();
         return ResponseEntity.ok(jobs);
     }
 
@@ -46,13 +44,10 @@ public class JobsController {
     public ResponseEntity<List<Jobs>> getJobById(@RequestParam("id") Long id) {
         try{
             List<Jobs> job=jobsService.getJobById(id);
-            // if(job.isEmpty()) return ResponseEntity.notFound().build();
             return ResponseEntity.ok(job);
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-//        Jobs job= jobsService.getJobById(id);
-//        return ResponseEntity.ok(job);
     }
 
     @PutMapping
