@@ -50,6 +50,10 @@ function App() {
           
         {/* <JobseekerDashboard /> */}
           
+            <Route path="/empeditprofile" element={<EmployerEditProfile />} />
+            <Route path="/empprofile/:id" element={<EmployerProfile />} />
+        
+          
             <Route path='/' element={<Home />}/>
             <Route path='/addjob' element={<AddJob />} />
             <Route path='/editjob/:id' element={<EditJob />} />
