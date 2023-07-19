@@ -13,7 +13,7 @@ function Footer(){
                     <h4>Links</h4>
                     <hr></hr>
                     <br></br>
-                    <a href="/sign-up">
+                    <a href="/SignUpPage">
                         <p>Register </p>
                     </a>
                     <a href="/login">
