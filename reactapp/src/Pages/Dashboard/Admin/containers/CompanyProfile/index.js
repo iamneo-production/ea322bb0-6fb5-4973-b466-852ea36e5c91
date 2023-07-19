@@ -28,7 +28,7 @@ function CompanyProfile() {
     loadData();
   }, [data]);
   const loadData = async () => {
-    const result = await axios.get("http://localhost:8080/employers");
+    const result = await axios.get("http://localhost:4000/employers");
     setData(result.data);
   };
 
