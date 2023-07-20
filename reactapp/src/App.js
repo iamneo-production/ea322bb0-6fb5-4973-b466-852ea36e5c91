@@ -20,6 +20,8 @@ import Home from './Pages/PostJobAndEditJob/components/Home.js';
 import AddJob from './Pages/PostJobAndEditJob/jobs/AddJob.js';
 import EditJob from './Pages/PostJobAndEditJob/jobs/EditJob.js';
 import ViewJob from './Pages/PostJobAndEditJob/jobs/ViewJob.js';
+import EmployerProfile from './Pages/Employer/Components/EmployerProfile';
+import EmployerEditProfile from './Pages/Employer/Components/EmployerEditProfile';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //adding comment
@@ -47,8 +49,8 @@ function App() {
           
         {/* <JobseekerDashboard /> */}
           
-            <Route path="/empeditprofile" element={<EmployerEditProfile />} />
-            <Route path="/empprofile/:id" element={<EmployerProfile />} />
+            {/* <Route path="/empeditprofile" element={<EmployerEditProfile />} />
+            <Route path="/empprofile/:id" element={<EmployerProfile />} /> */}
         
           
             <Route path='/' element={<Home />}/>
