@@ -1,9 +1,6 @@
 package com.example.springapp.controller;
 
-import com.example.springapp.model.Employer;
-import com.example.springapp.model.JobSeekers;
-import com.example.springapp.model.Jobs;
-import com.example.springapp.model.JobsApplied;
+import com.example.springapp.model.*;
 import com.example.springapp.repository.EmployersRepository;
 import com.example.springapp.service.JobsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/jobs")
@@ -23,11 +21,21 @@ public class JobsController {
     @Autowired
     private JobsService jobsService;
 
+    @Autowired
+    public JobsController(EmployersRepository employersRepository ){
+        this.employersRepository = employersRepository;
+    }
+
     @PostMapping
-    public ResponseEntity<Jobs> createJob(@RequestBody Jobs job) {
+    public ResponseEntity<Map<String,String>> createJob(@RequestBody Jobs job) {
         try{
-            Jobs createJob= jobsService.createJob(job);
-            return  ResponseEntity.status(HttpStatus.CREATED).body(createJob);
+            Map<String,String> response = jobsService.createJob(job);
+            if((response.get("message")).equals("Job Post Failed")){
+                return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jobsService.createJob(job));
+            }
+            else{
+                return  ResponseEntity.status(HttpStatus.CREATED).body(jobsService.createJob(job));
+            }
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -50,14 +58,14 @@ public class JobsController {
         }
     }
 
-    @PutMapping
-    public Jobs editJob(@RequestBody Jobs job) {
-        return jobsService.editJob(job);
+    @PutMapping(params = "id")
+    public Jobs editJob(@RequestParam("id") Long id,@RequestBody Jobs job) {
+        return jobsService.editJob(id, job);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteJob(@PathVariable("id") Long id) {
-        jobsService.deleteJob(id);
+    @DeleteMapping(params = "id")
+    public ResponseEntity<Map<String,String>> deleteJob(@RequestParam("id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(jobsService.deleteJob(id));
     }
 
     @GetMapping("/employer/{employerId}") // Get jobs posted by particular employer
@@ -66,8 +74,8 @@ public class JobsController {
     }
 
     @PostMapping("/apply") // Apply for a job (jobId and jobSeekerId as RequestParam)
-    public String applyForJob(@RequestParam("jobId") Long jobId, @RequestParam("jobSeekerId") Long jobSeekerId) {
-        return jobsService.applyForJob(jobId, jobSeekerId);
+    public ResponseEntity<Map<String,String>> applyForJob(@RequestParam("jobId") Long jobId, @RequestParam("jobSeekerId") Long jobSeekerId) {
+        return ResponseEntity.status(HttpStatus.OK).body(jobsService.applyForJob(jobId, jobSeekerId));
     }
 
     @GetMapping("/jobs-applied/{jobSeekerId}") // Get all jobs a job-seeker applied to

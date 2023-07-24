@@ -19,6 +19,7 @@ public class Employer {
     private String location;
 
     private long userId;
+    @JsonIgnore
     @OneToMany(mappedBy = "employer",cascade = CascadeType.ALL)
     private List<Jobs> jobs;
 
@@ -83,6 +84,7 @@ public class Employer {
         this.userId = userId;
     }
 
+    @JsonBackReference
     public List<Jobs> getJobs() {
         return jobs;
     }

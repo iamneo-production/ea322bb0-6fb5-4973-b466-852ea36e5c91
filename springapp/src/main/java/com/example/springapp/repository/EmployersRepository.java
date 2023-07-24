@@ -11,6 +11,10 @@ import java.util.List;
 @Repository
 public interface EmployersRepository extends JpaRepository<Employer,Long> {
 
-    @Query(value = "SELECT COUNT(*) FROM employer", nativeQuery = true)
+    @Query(value = "SELECT count(*) FROM employer ", nativeQuery = true)
     public int getNumberOfEmployer();
+
+    @Query(value = "SELECT * from employer where user_id=?", nativeQuery = true)
+    public Employer findEmployerByUserId(Long userId);
+
 }
