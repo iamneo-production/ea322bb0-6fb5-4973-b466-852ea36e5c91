@@ -14,16 +14,12 @@ public class User {
     private String username;
     private String password;
     private String role;
-    private String firstName;
-    private String lastName;
 
-    public User(Long id, String username, String password, String role, String firstName, String lastName) {
+    public User(Long id, String username, String password, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public User() {
@@ -62,22 +58,7 @@ public class User {
         this.role = role;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
+ 
     @Override
     public String toString() {
         return "User{" +
@@ -85,8 +66,6 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }
