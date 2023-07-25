@@ -41,7 +41,7 @@ function App() {
           {/* <Route exact path="/" element={<Jobs/>} />
           <Route exact path="/JobDetails/:id" element={<JobDetails/>} /> */}
 
-          {/* <Route path='/' element = {<AdminPage/>}/> */}
+         {/*  <Route path='/' element = {<Admin/>}/> */}
 
           {/* <JobSearchPage /> */}
         
