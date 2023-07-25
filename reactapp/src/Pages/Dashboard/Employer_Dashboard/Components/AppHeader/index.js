@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 import "./index.css";
 import authService from "../../../../../services/auth";
 import { useState } from "react";
-import JobSeekerProfile from "../../../../JobSeeker/Components/JobSeekerProfile";
-
-function AppHeader({ toast, setJobSeekerName, jobSeekerName }) {
+import EmployerProfile from "../../../../Employer/Components/EmployerProfile";
+function AppHeader({ toast, setEmployerName, employerName }) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [viewModifyState, setViewModifyState] = useState("VIEW");
-  const [jsId, setJsId] = useState();
+  const [empId, setEmpId] = useState();
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -32,12 +31,12 @@ function AppHeader({ toast, setJobSeekerName, jobSeekerName }) {
           type="primary"
           style={{ display: "flex", alignItems: "center", fontSize: "15px" }}
           onClick={() => {
-            setJsId(localStorage.getItem("jobSeekerId"));
+            setEmpId(localStorage.getItem("employerId"));
             showModal();
           }}
         >
           <UserOutlined style={{ marginRight: "5px" }} />
-          {jobSeekerName}
+          {employerName}
         </Button>
         <Button
           type="primary"
@@ -51,21 +50,21 @@ function AppHeader({ toast, setJobSeekerName, jobSeekerName }) {
           Log Out
         </Button>
       </div>
-      {isModalOpen && jsId !== null && (
+      {isModalOpen && empId !== null && (
         <Modal
           style={{ padding: "0" }}
           open={isModalOpen}
           onCancel={handleCancel}
           footer={null}
         >
-          <JobSeekerProfile
-            setJobSeekerName={setJobSeekerName}
+          <EmployerProfile
+            setEmployerName={setEmployerName}
             type={viewModifyState}
             setViewModifyState={setViewModifyState}
-            jsId={jsId}
+            empId={empId}
             toast={toast}
             modalClose={handleCancel}
-            title={"Job Seeker Profile"}
+            title={`${employerName} Profile`}
           />
         </Modal>
       )}

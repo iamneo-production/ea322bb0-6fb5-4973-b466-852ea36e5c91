@@ -4,18 +4,16 @@ import Typography from "antd/es/typography/Typography";
 import "./index.css";
 import DashboardCard from "./Component/DashboardCard";
 import { useEffect, useState } from "react";
-import jobSeekerService from "../../../../../services/jobSeekerService";
-
+import employerService from "../../../../../services/employerService";
 function Dashboard() {
   const [statistics, setStatistics] = useState({});
-  const userName = localStorage.getItem("jobSeekerName");
-  const jobSeekerId = localStorage.getItem("jobSeekerId");
+  const userName = localStorage.getItem("employerName");
+  const employerId = localStorage.getItem("employerId");
   useEffect(() => {
     loadStatistics();
   }, []);
-
   const loadStatistics = async () => {
-    jobSeekerService.getJobSeekerStatistics(jobSeekerId, setStatistics);
+    employerService.getEmployerStatistics(employerId, setStatistics);
   };
 
   return (
@@ -27,13 +25,15 @@ function Dashboard() {
             icon={
               <DotChartOutlined style={{ color: "green", fontSize: "60px" }} />
             }
-            title={<Typography.Title level={4}>Total Jobs</Typography.Title>}
-            value={statistics?.totalJobs}
+            title={<Typography.Title level={4}>Jobs Posted</Typography.Title>}
+            value={statistics?.jobsPosted}
           />
           <DashboardCard
             icon={<FormOutlined style={{ color: "red", fontSize: "60px" }} />}
-            title={<Typography.Title level={4}>Applied Jobs</Typography.Title>}
-            value={statistics?.jobsApplied}
+            title={
+              <Typography.Title level={4}>Total Applicants</Typography.Title>
+            }
+            value={statistics?.applicants}
           />
         </Space>
       </div>

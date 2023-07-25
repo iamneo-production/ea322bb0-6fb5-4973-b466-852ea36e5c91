@@ -1,15 +1,15 @@
-import { useEffect } from "react";
-import JobSearchPage from "../../../../JobSearch/JobSearchPage";
-import Appliedjobs from "../../Pages/AppliedJobs";
+import ApplicationsReceived from "../../Pages/Applications/index";
+import PostedJobs from "../../Pages/PostedJobs";
 import Dashboard from "../../Pages/Dashboard";
+import { useEffect } from "react";
 
-function PageContent({ content, setContent, toast, jobSeekerName }) {
+function PageContent({ content, setContent, toast, employerName }) {
   const pageContents = {
     Dashboard: <Dashboard setContent={setContent} toast={toast} />,
-    AppliedJobs: <Appliedjobs setContent={setContent} toast={toast} />,
-    applyForJobs: <JobSearchPage toast={toast} />,
+    PostedJobs: <PostedJobs setContent={setContent} toast={toast} />,
+    applicationsReceived: <ApplicationsReceived toast={toast} />,
   };
-  useEffect(() => {}, [jobSeekerName]);
+  useEffect(() => {}, [employerName]);
   return (
     <div
       style={{
