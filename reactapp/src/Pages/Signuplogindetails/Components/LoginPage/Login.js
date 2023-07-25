@@ -13,6 +13,11 @@ function Login() {
     const [role, setRole] = useState('admin');
     let navigate = useNavigate();
     function loginhandler() {
+        // if(role === 'admin'){
+        //     navigate("/admin")
+        // }else{
+        //     navigate("/user")
+        // }
         navigate('/signup');
     }
     
