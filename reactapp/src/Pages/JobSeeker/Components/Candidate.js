@@ -8,7 +8,6 @@ import { React, useState, useEffect } from "react";
 
 function Candidate(props) {
   const [userData, setUserData] = useState({});
-  
   const { type } = props;
   const isAddType = type === "ADD";
   const isViewType = type === "VIEW";
