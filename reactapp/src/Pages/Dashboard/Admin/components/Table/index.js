@@ -2,11 +2,7 @@ import { Table } from "antd";
 import "./index.css";
 
 const MyTable = (props) => {
-  const { columns, data, hasData, setHasData, defaultTitle } = props;
-
-  const handleDataChange = (newHasData) => {
-    setHasData(newHasData);
-  };
+  const { columns, data, hasData, defaultTitle, rowKey } = props;
 
   const tableColumns = columns.map((item, key) => ({
     ...item,
@@ -32,7 +28,8 @@ const MyTable = (props) => {
           defaultCurrent: 1,
           pageSize: 15,
         }}
-        rowKey={(tableColumns) => tableColumns.id}
+        // rowKey={(tableColumns) => tableColumns.id}
+        rowKey={rowKey}
         columns={tableColumns}
         dataSource={hasData ? data : []}
         scroll={{ y: 240 }}
