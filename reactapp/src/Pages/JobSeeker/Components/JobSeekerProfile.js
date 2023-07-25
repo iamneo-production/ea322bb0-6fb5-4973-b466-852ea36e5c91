@@ -1,51 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import employerService from "../../../services/employerService";
-const EmployerProfile = (props) => {
+import jobSeekerService from "../../../services/jobSeekerService";
+const JobSeekerProfile = (props) => {
   const {
     type,
     toast,
     setViewModifyState,
-    empId,
+    jsId,
     modalClose,
     title,
-    setEmployerName,
+    setJobSeekerName,
   } = props;
   const isAddType = type === "ADD";
   const isViewType = type === "VIEW";
+  const isJobSeeker = localStorage.getItem("role") === "jobseeker";
   const [initialValues, setInitialValues] = useState(false);
   const [form] = Form.useForm();
-  const isEmployer = localStorage.getItem("role") === "employer";
-  const [employer, setEmployerDetails] = useState({});
+  const [jobSeeker, setJobSeeker] = useState({});
   const onUpdate = (status) => {
     if (status >= 200 && status < 300) {
       toast.success("Profile Update Success");
-      localStorage.setItem("employerName", form.getFieldValue("name"));
-      setEmployerName(form.getFieldValue("name"));
+      localStorage.setItem("jobSeekerName", form.getFieldValue("name"));
+      setJobSeekerName(form.getFieldValue("name"));
       setViewModifyState("VIEW");
       modalClose();
     } else {
       toast.error("Profile Update Failed");
     }
   };
-  const updateEmployer = () => {
+  const updateJobSeeker = () => {
     const updatedData = {
       name: form.getFieldValue("name"),
       location: form.getFieldValue("location"),
-      description: form.getFieldValue("description"),
+      skills: form.getFieldValue("skills"),
+      experience: form.getFieldValue("experience"),
     };
-    employerService.updateEmployerById(empId, updatedData, onUpdate);
+    jobSeekerService.updateJobSeekerById(jsId, updatedData, onUpdate);
   };
   useEffect(() => {
     const loadData = async () => {
       !isAddType &&
-        (await employerService.getEmployerById(empId, setEmployerDetails));
+        (await jobSeekerService.getJobSeekerById(jsId, setJobSeeker));
     };
     loadData().then(() => {
       setInitialValues(true);
     });
-  }, [employer]);
+  }, [jobSeeker]);
   return (
     <div style={{ backgroundColor: "whitesmoke" }}>
       <div className="container">
@@ -56,7 +57,7 @@ const EmployerProfile = (props) => {
                 form={form}
                 name="register"
                 scrollToFirstError
-                initialValues={employer}
+                initialValues={jobSeeker}
               >
                 <div className="border rounded p-4 mt-2 shadow">
                   <h2 className="text-center m-4">
@@ -85,11 +86,10 @@ const EmployerProfile = (props) => {
                   >
                     <Input
                       disabled={isViewType}
-                      value={!isAddType ? employer?.title : ""}
+                      value={!isAddType ? jobSeeker?.title : ""}
                       className="form-control opacity-75 w-100"
                     />
                   </Form.Item>
-
                   {isViewType && (
                     <Form.Item
                       className="mb-3 form-label"
@@ -102,6 +102,7 @@ const EmployerProfile = (props) => {
                       />
                     </Form.Item>
                   )}
+
                   <Form.Item
                     className="mb-3 form-label"
                     name="location"
@@ -121,26 +122,28 @@ const EmployerProfile = (props) => {
                   >
                     <Input
                       disabled={isViewType}
-                      value={!isAddType ? employer?.location : ""}
+                      value={!isAddType ? jobSeeker?.location : ""}
                       className="form-control opacity-75 w-100"
                     />
                   </Form.Item>
                   <Form.Item
                     className="mb-3 form-label"
-                    name="description"
-                    label="Description"
+                    name="experience"
+                    label="Experience"
                     tooltip={
-                      isAddType ? "Please describe about your Company" : ""
+                      isAddType
+                        ? "Please tell us about your Previous Job Experience"
+                        : ""
                     }
                     rules={[
                       {
-                        message: "Please input your Company Description",
+                        message: "Please input your Previous Job Experience",
                         whitespace: true,
                       },
                       { ...(!isViewType && { required: true }) },
                       {
                         pattern: /^[a-zA-Z0-9 ,.'-]+$/i,
-                        message: "Please enter a valid Description",
+                        message: "Please enter a valid Job Experience",
                       },
                     ]}
                   >
@@ -150,6 +153,30 @@ const EmployerProfile = (props) => {
                     />
                   </Form.Item>
 
+                  <Form.Item
+                    className="mb-3 form-label"
+                    name="skills"
+                    label="Skills"
+                    tooltip={
+                      isAddType ? "Please tell us about your skills" : ""
+                    }
+                    rules={[
+                      {
+                        message: "Please input your Skills!",
+                        whitespace: true,
+                      },
+                      { ...(!isViewType && { required: true }) },
+                      {
+                        pattern: /^[a-zA-Z0-9 ,.'-]+$/i,
+                        message: "Please enter a valid Skill",
+                      },
+                    ]}
+                  >
+                    <TextArea
+                      disabled={isViewType}
+                      className="form-control opacity-75 w-100"
+                    />
+                  </Form.Item>
                   <div className="d-flex justify-content-center">
                     <Form.Item>
                       {!isAddType && !isViewType && (
@@ -158,7 +185,7 @@ const EmployerProfile = (props) => {
                           htmlType="submit"
                           onClick={(e) => {
                             e.preventDefault();
-                            updateEmployer();
+                            updateJobSeeker();
                           }}
                         >
                           Update Profile
@@ -166,7 +193,7 @@ const EmployerProfile = (props) => {
                       )}
                     </Form.Item>
 
-                    {isViewType && isEmployer && (
+                    {isViewType && isJobSeeker && (
                       <Button
                         type="primary"
                         className="btn btn-outline-secondary"
@@ -188,4 +215,4 @@ const EmployerProfile = (props) => {
   );
 };
 
-export default EmployerProfile;
+export default JobSeekerProfile;
