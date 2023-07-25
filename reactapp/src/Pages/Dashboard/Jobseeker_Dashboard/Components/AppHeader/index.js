@@ -1,30 +1,25 @@
-import {
-  UserOutlined,
-  PoweroffOutlined,
-  DownCircleFilled,
-  SearchOutlined,
-} from "@ant-design/icons";
-import { Avatar, Image, Button, Dropdown, Menu } from "antd";
-import { Link } from "react-router-dom";
+import { UserOutlined, PoweroffOutlined } from "@ant-design/icons";
+import { Image, Button, Modal } from "antd";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
+import authService from "../../../../../services/auth";
+import { useState } from "react";
+import JobSeekerProfile from "../../../../JobSeeker/Components/JobSeekerProfile";
 
-function AppHeader() {
-  const menu = (
-    <Menu>
-      <Menu.Item key="0">
-        <Link to="/profile">View Profile</Link>
-      </Menu.Item>
-      <Menu.Item key="1">
-        <Link to="/edit-profile">Edit Profile</Link>
-      </Menu.Item>
-      <Menu.Divider />
-    </Menu>
-  );
-
+function AppHeader({ toast, setJobSeekerName, jobSeekerName }) {
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [viewModifyState, setViewModifyState] = useState("VIEW");
+  const [jsId, setJsId] = useState();
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCancel = () => {
+    setViewModifyState("VIEW");
+    setIsModalOpen(false);
+  };
   return (
-    <div
-      className="AppHeader1"
-    >
+    <div className="AppHeader1">
       <Image
         width={110}
         src="https://i.postimg.cc/3r0pdVjy/Logo-4.png"
@@ -33,40 +28,47 @@ function AppHeader() {
       />
 
       <div style={{ display: "flex", alignItems: "center", columnGap: "40px" }}>
-        <Link to="">
-          <Button
-            type="primary"
-            icon={<SearchOutlined className="searchicon" />}
-            className="white-button"
-          >
-            Search for more Jobs
-          </Button>
-        </Link>
-
-        <Dropdown overlay={menu}>
-          <div
-            style={{ display: "flex", alignItems: "center", color: "white" }}
-          >
-            <Avatar
-              size={50}
-              icon={<UserOutlined />}
-              style={{ marginRight: "10px" }}
-            />
-            <span style={{ marginRight: "10px" }}>Profile Name</span>
-            <DownCircleFilled style={{ color: "white" }} />
-          </div>
-        </Dropdown>
-
-        <Link to="">
-          <Button
-            type="primary"
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <PoweroffOutlined style={{ marginRight: "5px" }} />
-            Log Out
-          </Button>
-        </Link>
+        <Button
+          type="primary"
+          style={{ display: "flex", alignItems: "center", fontSize: "15px" }}
+          onClick={() => {
+            setJsId(localStorage.getItem("jobSeekerId"));
+            showModal();
+          }}
+        >
+          <UserOutlined style={{ marginRight: "5px" }} />
+          {jobSeekerName}
+        </Button>
+        <Button
+          type="primary"
+          style={{ display: "flex", alignItems: "center" }}
+          onClick={() => {
+            authService.logout();
+            navigate("/");
+          }}
+        >
+          <PoweroffOutlined style={{ marginRight: "5px" }} />
+          Log Out
+        </Button>
       </div>
+      {isModalOpen && jsId !== null && (
+        <Modal
+          style={{ padding: "0" }}
+          open={isModalOpen}
+          onCancel={handleCancel}
+          footer={null}
+        >
+          <JobSeekerProfile
+            setJobSeekerName={setJobSeekerName}
+            type={viewModifyState}
+            setViewModifyState={setViewModifyState}
+            jsId={jsId}
+            toast={toast}
+            modalClose={handleCancel}
+            title={"Job Seeker Profile"}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

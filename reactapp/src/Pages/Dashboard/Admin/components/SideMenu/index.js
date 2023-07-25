@@ -1,9 +1,11 @@
 import { Menu } from "antd";
 import { AppstoreOutlined } from "@ant-design/icons";
-import { FaUser, FaListAlt, FaUserTie } from "react-icons/fa";
+import { FaUser, FaRocketchat, FaListAlt, FaUserTie } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 function SideMenu({ setContent }) {
+  const navigate = useNavigate();
   return (
     <div className="SideMenu" style={{ width: "240px", height: "100%" }}>
       <Menu
@@ -33,7 +35,13 @@ function SideMenu({ setContent }) {
             label: "Applications",
             icon: <FaListAlt />,
             key: "Applications",
-          }
+          },
+
+          {
+            label: "Reports",
+            icon: <FaRocketchat />,
+            key: "Reports",
+          },
         ]}
         style={{
           width: "100%",

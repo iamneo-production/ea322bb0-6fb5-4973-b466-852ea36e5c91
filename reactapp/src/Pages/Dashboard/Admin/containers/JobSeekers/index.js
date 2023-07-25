@@ -26,7 +26,7 @@ function JobSeekers() {
     loadData();
   }, []);
   const loadData = async () => {
-    const result = await axios.get("http://localhost:8080/job-seekers");
+    const result = await axios.get("http://localhost:4000/job-seekers");
     console.log(result?.data, " is resuktss");
     setData(result?.data);
   };

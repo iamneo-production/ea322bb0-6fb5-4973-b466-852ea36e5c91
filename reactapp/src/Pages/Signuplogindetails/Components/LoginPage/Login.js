@@ -13,12 +13,7 @@ function Login() {
     const [role, setRole] = useState('admin');
     let navigate = useNavigate();
     function loginhandler() {
-        // if(role === 'admin'){
-        //     navigate("/admin")
-        // }else{
-        //     navigate("/user")
-        // }
-        navigate('/signup');
+        navigate('/SignUpPage');
     }
     
     const options = [
@@ -65,16 +60,12 @@ function Login() {
     const CheckUser1=()=>{
         // validatedetails()
         if (Object.values(formErrors).every(error => error === '')){
-        const api="http://localhost:8080/user/check/"+formValues.email
-        axios.get(api,{
-            "username":formValues.email,
-            "password":formValues.psd,
-            "role":formValues.role
-        })
-                // .then(res => {
-                //     if(res.data){
-                //        const apipcheck="http://localhost:8080/user/checkpassword/"+formValues.email+ "/" +formValues.psd
-                //        axios.get(apipcheck)
+        const apiuser="http://localhost:8080/user/check/"+formValues.email
+        axios.get(apiuser)
+                .then(res => {
+                    if(res.data){
+                       const apipcheck="http://localhost:8080/user/checkpassword/"+formValues.email+ "/" +formValues.psd
+                       axios.get(apipcheck)
                        .then((response)=>{
                         if(response.data){
                             alert("Login success")
@@ -84,15 +75,15 @@ function Login() {
                                 role: 'Admin'
                             })
                         }else{
-                            alert("Enter correct details")
+                            alert("Password is not correct")
                         }
                        })
-                //     }
-                //     else{
-                //         alert("Email not exist")
-                //     }    
-                // })
-                
+                    }
+                    else{
+                        alert("Email not exist")
+                    }    
+                })
+                .catch(err => (console.log(err)))
     };
 }
 

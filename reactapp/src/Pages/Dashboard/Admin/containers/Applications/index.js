@@ -2,9 +2,8 @@ import { Space, Layout, Button, Input } from "antd";
 import MyTable from "../../components/Table";
 import { useState, useRef, useEffect } from "react";
 import { SearchOutlined } from "@ant-design/icons";
+import { FaUser } from "react-icons/fa";
 import Highlighter from "react-highlight-words";
-import axios from "axios";
-
 const { Header, Content } = Layout;
 function Applications() {
   const defaultTitle = () => "List of Applications";
@@ -17,8 +16,8 @@ function Applications() {
     loadData();
   }, [data]);
   const loadData = async () => {
-    const result = await axios.get("http://localhost:8080/applications");
-    setData(result.data);
+    // const result = await axios.get("http://localhost:8081/applications");
+    // setCompanies(result.data);
   };
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();

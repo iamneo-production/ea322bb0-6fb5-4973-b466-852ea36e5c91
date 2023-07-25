@@ -1,9 +1,10 @@
-import { SearchOutlined } from "@ant-design/icons";
-import { Button, Input, Layout, Space } from "antd";
-import axios from "axios";
-import { useEffect, useRef, useState } from "react";
-import Highlighter from "react-highlight-words";
+import { Space, Layout, Button, Input } from "antd";
 import MyTable from "../../components/Table";
+import { useState, useRef, useEffect } from "react";
+import { SearchOutlined } from "@ant-design/icons";
+import { FaUser } from "react-icons/fa";
+import Highlighter from "react-highlight-words";
+import axios from "axios";
 const { Header, Content } = Layout;
 function CompanyProfile() {
   const defaultTitle = () => "List of Companies";
@@ -28,7 +29,7 @@ function CompanyProfile() {
     loadData();
   }, [data]);
   const loadData = async () => {
-    const result = await axios.get("http://localhost:8080/employers");
+    const result = await axios.get("http://localhost:4000/employers");
     setData(result.data);
   };
 

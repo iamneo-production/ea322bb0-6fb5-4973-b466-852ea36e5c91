@@ -17,13 +17,9 @@ public class JobSeekers {
     private String skills;
     private String experience;
     private String location;
-//    @JsonIgnore
-//    @OneToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
-
     private long userId;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "jobSeekers",cascade = CascadeType.ALL)
     private List<JobsApplied> jobsApplied=new ArrayList<>();
 
@@ -98,7 +94,7 @@ public class JobSeekers {
         this.userId = userId;
     }
 
-    //    @JsonManagedReference
+    @JsonBackReference
     public List<JobsApplied> getJobsApplied() {
         return jobsApplied;
     }
