@@ -1,6 +1,6 @@
 import { Menu } from "antd";
 import { AppstoreOutlined } from "@ant-design/icons";
-import { FaUser, FaRocketchat, FaListAlt, FaUserTie } from "react-icons/fa";
+import { FaUser, FaRocketchat, FaUserTie } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 
