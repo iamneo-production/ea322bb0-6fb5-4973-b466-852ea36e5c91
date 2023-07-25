@@ -1,0 +1,26 @@
+.SideMenuAndPagesContent{
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+    scroll-behavior: smooth;
+  }
+  
+  .SideMenu{
+  
+      width: 250px;
+      padding-top: 20px;
+      font-weight: 500;
+      height: 850px;
+      margin-top: 2px;
+      
+      
+  }
+ 
+  .menu-item{
+   
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: larger; 
+  }
+  
