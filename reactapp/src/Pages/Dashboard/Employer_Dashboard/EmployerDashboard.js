@@ -5,23 +5,23 @@ import { Layout, Space } from "antd";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-function JobseekerDashboard() {
+function EmployerDashboard() {
   const [content, setContent] = useState("Dashboard");
-  const [jobSeekerName, setJobSeekerName] = useState(
-    localStorage.getItem("jobSeekerName")
+  const [employerName, setEmployerName] = useState(
+    localStorage.getItem("employerName")
   );
   return (
     <div>
       <Layout>
         <AppHeader
           toast={toast}
-          setJobSeekerName={setJobSeekerName}
-          jobSeekerName={jobSeekerName}
+          setEmployerName={setEmployerName}
+          employerName={employerName}
         ></AppHeader>
         <Space className="SideMenuAndPagesContent">
           <SideMenu setContent={setContent}></SideMenu>
           <PageContent
-            jobSeekerName={jobSeekerName}
+            employerName={employerName}
             content={content}
             setContent={setContent}
             toast={toast}
@@ -33,4 +33,4 @@ function JobseekerDashboard() {
   );
 }
 
-export default JobseekerDashboard;
+export default EmployerDashboard;

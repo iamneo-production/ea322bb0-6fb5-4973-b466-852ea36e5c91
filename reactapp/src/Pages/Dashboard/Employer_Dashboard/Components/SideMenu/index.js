@@ -4,11 +4,9 @@ import {
   FormOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
-import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 function SideMenu({ setContent }) {
-  const navigate = useNavigate();
 
   const menuItems = [
     {
@@ -17,14 +15,14 @@ function SideMenu({ setContent }) {
       icon: <DashboardOutlined style={{ fontSize: "23px", color: "red" }} />,
     },
     {
-      label: "Applied Jobs",
-      key: "AppliedJobs",
-      icon: <FileAddOutlined style={{ fontSize: "23px", color: "green" }} />,
+      label: "Posted Jobs",
+      key: "PostedJobs",
+      icon: <FormOutlined style={{ fontSize: "23px", color: "green" }} />,
     },
     {
-      label: "Apply for Jobs",
-      key: "applyForJobs",
-      icon: <FormOutlined style={{ fontSize: "23px", color: "green" }} />,
+      label: "Applications Received",
+      key: "applicationsReceived",
+      icon: <FileAddOutlined style={{ fontSize: "23px", color: "green" }} />,
     },
   ];
 
