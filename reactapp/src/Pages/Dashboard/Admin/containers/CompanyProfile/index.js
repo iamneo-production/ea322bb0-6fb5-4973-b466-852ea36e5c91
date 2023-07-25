@@ -1,18 +1,28 @@
-import { Space, Layout, Button, Input } from "antd";
+import { Space, Layout, Button, Input, Modal } from "antd";
 import MyTable from "../../components/Table";
 import { useState, useRef, useEffect } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import { FaUser } from "react-icons/fa";
 import Highlighter from "react-highlight-words";
-import axios from "axios";
+import employerService from "../../../../../services/employerService";
+import EmployerProfile from "../../../../Employer/Components/EmployerProfile";
 const { Header, Content } = Layout;
-function CompanyProfile() {
-  const defaultTitle = () => "List of Companies";
-
+function CompanyProfile({ toast }) {
+  const defaultTitle = () => "List of Employers";
   const [hasData, setHasData] = useState(true); // state is required
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
+  const [viewModifyState, setViewModifyState] = useState("VIEW");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [empId, setEmpId] = useState();
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -23,14 +33,13 @@ function CompanyProfile() {
     clearFilters();
     setSearchText("");
   };
-
   const [data, setData] = useState([]);
   useEffect(() => {
     loadData();
-  }, [data]);
+  }, [hasData, isModalOpen]);
   const loadData = async () => {
-    const result = await axios.get("http://localhost:4000/employers");
-    setData(result.data);
+    employerService.getAllEmployers(setData);
+    setHasData(true);
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -126,48 +135,58 @@ function CompanyProfile() {
 
   const columns = [
     {
-      title: "ID",
+      title: "S.No",
       dataIndex: "id",
-      sorter: true,
-      ...getColumnSearchProps("id"),
+      render: (text, object, index) => index + 1,
       width: "6%",
     },
     {
       title: "Name",
       dataIndex: "name",
-      sorter: true,
       ...getColumnSearchProps("name"),
     },
     {
       title: "Email ID",
       dataIndex: "emailId",
-      ...getColumnSearchProps("emailId"),
+      ...getColumnSearchProps("name"),
     },
     {
       title: "Description",
       dataIndex: "description",
-      sorter: true,
+
       ...getColumnSearchProps("description"),
     },
 
     {
       title: "Location",
       dataIndex: "location",
-      sorter: true,
+
       ...getColumnSearchProps("location"),
     },
     {
       title: "Action",
       key: "action",
       width: "15%",
-      render: () => (
+      render: (id) => (
         <Space size="middle">
-          <a href="/">View Profile</a>
+          <p
+            className="view-profile"
+            onClick={() => {
+              setEmpId(id.id);
+              showModal();
+            }}
+          >
+            View Profile
+          </p>
         </Space>
       ),
     },
   ];
-
+  const tableColumns = columns.map((item, key) => ({
+    ...item,
+    ...{ key: key },
+    ellipsis: true,
+  }));
   const headerStyle = {
     textAlign: "center",
     color: "#000",
@@ -183,16 +202,35 @@ function CompanyProfile() {
   return (
     <div>
       <Layout>
-        <Header style={headerStyle}>Company Profile</Header>
-
+        <Header style={headerStyle}>Employers</Header>
+        {isModalOpen && empId !== null && (
+          <Modal
+            style={{ padding: "0" }}
+            open={isModalOpen}
+            onCancel={handleCancel}
+            footer={null}
+          >
+            <EmployerProfile
+              type={viewModifyState}
+              setViewModifyState={setViewModifyState}
+              empId={empId}
+              toast={toast}
+              modalClose={handleCancel}
+              title={"Employer Profile"}
+            />
+          </Modal>
+        )}
         <Content>
-          <MyTable
-            defaultTitle={defaultTitle}
-            columns={columns}
-            data={data}
-            hasData={hasData}
-            setHasData={setHasData}
-          />
+          {hasData && (
+            <MyTable
+              rowKey={(tableColumns) => tableColumns.id}
+              defaultTitle={defaultTitle}
+              columns={tableColumns}
+              data={data}
+              hasData={hasData}
+              setHasData={setHasData}
+            />
+          )}
         </Content>
       </Layout>
     </div>

@@ -11,7 +11,6 @@ function SideMenu({ setContent }) {
       <Menu
         className="SideMenu"
         onClick={(item) => {
-          console.log("set key  ", item.key);
           setContent(item.key);
         }}
         items={[
@@ -20,9 +19,8 @@ function SideMenu({ setContent }) {
             icon: <AppstoreOutlined />,
             key: "Dashboard",
           },
-
           {
-            label: "Company Profile",
+            label: "Employers",
             icon: <FaUser />,
             key: "CompanyProfile",
           },
@@ -31,12 +29,6 @@ function SideMenu({ setContent }) {
             icon: <FaUserTie />,
             key: "JobSeekers",
           },
-          {
-            label: "Applications",
-            icon: <FaListAlt />,
-            key: "Applications",
-          },
-
           {
             label: "Reports",
             icon: <FaRocketchat />,

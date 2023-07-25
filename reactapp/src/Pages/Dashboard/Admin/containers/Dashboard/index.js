@@ -1,22 +1,18 @@
 import { FaRegIdCard, FaListAlt, FaUsers } from "react-icons/fa";
 import { FcOrganization } from "react-icons/fc";
-import { TbCategory } from "react-icons/tb";
-import { Statistic, Typography, Card, Space, Button } from "antd";
+import { Statistic, Typography, Card, Space } from "antd";
 import "./index.css";
 import InterviewPrepImage from "../../assets/images/interviewprep.png";
-import MultiCarousel from "../../components/Carousel";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import adminService from "../../../../../services/adminService";
 function Dashboard({ setContent }) {
-  const [companies, setCompanies] = useState([]);
   const [statistics, setStatistics] = useState({});
   useEffect(() => {
     loadStatistics();
-  }, [companies, statistics]);
+  }, [statistics]);
 
   const loadStatistics = async () => {
-    const result = await axios.get("http://localhost:4000/admin/statistics");
-    setStatistics(result?.data);
+    adminService.getStatistics(setStatistics);
   };
 
   return (
@@ -36,7 +32,10 @@ function Dashboard({ setContent }) {
           ></div>
         }
       >
-        <Typography.Title level={4}> Welcome Admin</Typography.Title>
+        <Typography.Title level={4}>
+          {" "}
+          {`Welcome Admin (${localStorage.getItem("username")})`}
+        </Typography.Title>
         <p className="welcome-message">Today's Reports</p>
         <img
           src={InterviewPrepImage}
@@ -62,7 +61,7 @@ function Dashboard({ setContent }) {
             />
           }
           title={"Jobs Posted"}
-          value={statistics.jobsPosted}
+          value={statistics?.["job-posted"]}
         />
         <DashboardCard
           icon={
@@ -77,7 +76,7 @@ function Dashboard({ setContent }) {
             />
           }
           title={"Applications"}
-          value={statistics?.applications}
+          value={statistics?.["job-application"]}
         />
         <DashboardCard
           icon={
@@ -91,8 +90,8 @@ function Dashboard({ setContent }) {
               }}
             />
           }
-          title={"Companies"}
-          value={statistics?.companies}
+          title={"Employers"}
+          value={statistics?.employer}
         />
         <DashboardCard
           icon={
@@ -107,32 +106,9 @@ function Dashboard({ setContent }) {
             />
           }
           title={"Job Seekers"}
-          value={statistics?.jobSeekers}
+          value={statistics?.["job-seeker"]}
         />
       </Space>
-
-      <div className="top-category-carousel">
-        <div
-          className="top-category-head"
-          style={{
-            margin: "10px 0",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <h2 className="top-category-heading">All Companies</h2>
-          <Button
-            type="primary"
-            icon={<TbCategory />}
-            size={"large"}
-            onClick={() => setContent("CompanyProfile")}
-          >
-            View All Companies
-          </Button>
-        </div>
-        <MultiCarousel slides={companies} slidesToShow={4} />
-      </div>
     </div>
   );
 }
