@@ -22,7 +22,7 @@ public class JwtTokenUtil implements Serializable  {
     private static final long serialVersionUID = -2550185165626007488L;
 
     //token valadity in seconds
-    public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 60 * 60;
 
     private String secret="admin";//jwt secret key in application.properties
 

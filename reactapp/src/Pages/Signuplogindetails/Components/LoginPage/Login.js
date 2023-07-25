@@ -13,7 +13,7 @@ function Login() {
     const [role, setRole] = useState('admin');
     let navigate = useNavigate();
     function loginhandler() {
-        navigate('/signup');
+        navigate('/SignUpPage');
     }
     
     const options = [
