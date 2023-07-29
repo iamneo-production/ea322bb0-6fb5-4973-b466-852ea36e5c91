@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://8080-fdaffbeddcdfefecdaaadaccdadddfabcfbf.project.examly.io",
+  baseURL: "https://8080-bfabbcefecdaaadaccdadddfabcfbf.project.examly.io",
   timeout: 5000,
   headers: {
     "Access-Control-Allow-Origin": "*",
