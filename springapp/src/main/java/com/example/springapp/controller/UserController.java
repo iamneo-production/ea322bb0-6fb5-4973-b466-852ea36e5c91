@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("https://ide-fadbdbfecafeceefecdaaadaccdadddfabcfbf.project.examly.io/proxy/8081")
+@CrossOrigin("https://8081-fadbdbfecafeceefecdaaadaccdadddfabcfbf.project.examly.io")
 public class UserController {
     @Autowired
     UserService userService;
