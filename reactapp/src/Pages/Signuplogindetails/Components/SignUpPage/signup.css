@@ -181,3 +181,14 @@ label input[type="checkbox"] {
 .signup-text {
   font-size: 45px !important;
 }
+.eye{
+  margin-top: 25px;
+  position:absolute;
+  margin-left: 19%;
+  color: rgb(149, 145, 145);
+}
+.peye{
+  cursor: 'pointer';
+  text-align: right;
+  display: flex;
+}

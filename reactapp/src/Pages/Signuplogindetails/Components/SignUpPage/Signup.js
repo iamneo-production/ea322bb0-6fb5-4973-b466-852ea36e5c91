@@ -2,6 +2,8 @@ import { FacebookOutlined, TwitterCircleFilled } from "@ant-design/icons";
 import "./signup.css";
 import { useNavigate } from "react-router-dom";
 import userService from "../../../../services/userService";
+import React, { useState } from 'react';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 function Signup({ toast }) {
   const navigate = useNavigate();
@@ -12,9 +14,9 @@ function Signup({ toast }) {
     if (response === 200) {
       toast.success("Registration Successful !!!");
       navigate("/login");
-    } else {
+    } else  {
       toast.error("Username Already Exists");
-    }
+    } 
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +27,16 @@ function Signup({ toast }) {
     };
 
     userService.registerUser(formValues, onRegister);
+  };
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [password, setPassword] = useState('');
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
   };
   return (
     <>
@@ -57,17 +69,29 @@ function Signup({ toast }) {
                 <input
                   name="username"
                   type="email"
+                  required="required"
                   placeholder="Enter your Email Id"
                   pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                 />
                 <br />
+                <div className="peye">
                 <input
+                  type={passwordVisible ? 'text' : 'password'}
+                  value={password}
+                  onChange={handlePasswordChange}
+                  placeholder="Enter your password"
                   name="password"
-                  type="password"
-                  placeholder="Enter your Password"
+                  required="required"
+                  // name="password"
+                  // type="password"
+                  // placeholder="Enter your Password"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                 />
+                <h2 className="eye" onClick={togglePasswordVisibility}>
+                {passwordVisible ? <AiFillEyeInvisible /> : <AiFillEye />}
+                </h2>
+                </div>
               </div>
 
               <br />

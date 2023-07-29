@@ -181,3 +181,14 @@ label input[type="checkbox"] {
 .login-text {
   font-size: 45px !important;
 }
+.peye{
+  cursor: 'pointer';
+  text-align: right;
+  display: flex;
+}
+.eye{
+  margin-top: 25px;
+  position:absolute;
+  margin-left: 20%;
+  color: rgb(149, 145, 145);
+}
