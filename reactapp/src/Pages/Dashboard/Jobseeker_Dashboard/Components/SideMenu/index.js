@@ -1,44 +1,43 @@
-import { DashboardOutlined, FileAddOutlined, /* SolutionOutlined */ } from "@ant-design/icons";
+import {
+  DashboardOutlined,
+  FileAddOutlined,
+  FormOutlined,
+} from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import './index.css'
+import "./index.css";
 
-function SideMenu() {
+function SideMenu({ setContent }) {
   const navigate = useNavigate();
 
   const menuItems = [
     {
       label: "Dashboard",
-      key: "/",
+      key: "Dashboard",
       icon: <DashboardOutlined style={{ fontSize: "23px", color: "red" }} />,
-      
     },
     {
       label: "Applied Jobs",
-      key: "/appliedJobs",
+      key: "AppliedJobs",
       icon: <FileAddOutlined style={{ fontSize: "23px", color: "green" }} />,
-      
     },
-  /*   {
-      label: "Resume",
-      key: "/resume",
-      icon: <SolutionOutlined style={{ fontSize: "23px", color: "blue" }} />,
-      
-    }, */
+    {
+      label: "Apply for Jobs",
+      key: "applyForJobs",
+      icon: <FormOutlined style={{ fontSize: "23px", color: "green" }} />,
+    },
   ];
 
   const handleMenuItemClick = (item) => {
-    navigate(item.key);
+    setContent(item.key);
   };
 
   return (
-    <Menu className="SideMenu" onClick={handleMenuItemClick}>
-      {menuItems.map((item) => (
-        <Menu.Item key={item.key} icon={item.icon} className="menu-item">
-          {item.label}
-        </Menu.Item>
-      ))}
-    </Menu>
+    <Menu
+      className="SideMenu"
+      onClick={handleMenuItemClick}
+      items={menuItems}
+    ></Menu>
   );
 }
 

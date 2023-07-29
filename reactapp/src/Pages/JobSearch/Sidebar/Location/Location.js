@@ -1,4 +1,3 @@
-import "./Location.css";
 import Input from "../../components/Input";
 
 const Location = ({ handleChange }) => {

@@ -21,7 +21,7 @@ public class JobsService {
     @Autowired
     private JobSeekersRepository jobSeekersRepository;
     public List<Jobs> getAllJobs() {
-        return jobsRepository.findAllJobs();
+        return jobsRepository.findAll();
     }
     public Map<String,String> createJob(Jobs job) {
         Map<String,String> createdResponse = new HashMap<>();
