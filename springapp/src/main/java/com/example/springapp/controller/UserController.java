@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("http://localhost:8081")
+@CrossOrigin("https://8081-fadbdbfecafeceefecdaaadaccdadddfabcfbf.project.examly.io")
 public class UserController {
     @Autowired
     UserService userService;
@@ -41,7 +41,6 @@ public class UserController {
     }
     @PostMapping("/login")
     public ResponseEntity<Map<String,String>> loginUser(@RequestBody User user) {
-        System.out.println("Req is here"+ user);
         return ResponseEntity.status(HttpStatus.OK).body(userService.authentication(user));
     }
 }

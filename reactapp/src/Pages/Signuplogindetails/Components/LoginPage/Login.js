@@ -2,6 +2,8 @@ import { FacebookOutlined, TwitterCircleFilled } from "@ant-design/icons";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
 import userService from "../../../../services/userService";
+import React, { useState } from 'react';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 function Login({ toast }) {
   const navigate = useNavigate();
@@ -33,7 +35,7 @@ function Login({ toast }) {
     }
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault();       //not to refresh
     const formValues = {
       username: e?.target?.username?.value,
       password: e?.target?.password?.value,
@@ -42,6 +44,16 @@ function Login({ toast }) {
 
     console.log(formValues);
     userService.loginUser(formValues, onLogin);
+  };
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [password, setPassword] = useState('');
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
   };
   return (
     <>
@@ -78,17 +90,28 @@ function Login({ toast }) {
                 <input
                   name="username"
                   type="email"
+                  required="required"
                   placeholder="Enter your Email Id"
                   pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                 />
                 <br />
+                <div className="peye">
                 <input
+                  type={passwordVisible ? 'text' : 'password'}
+                  value={password}
+                  onChange={handlePasswordChange}
+                  placeholder="Enter your password"
                   name="password"
-                  type="password"
-                  placeholder="Enter your Password"
+                  required="required"
+                  // type="password"
+                  // placeholder="Enter your Password"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                 />
+                <h2 className="eye" onClick={togglePasswordVisibility}>
+                {passwordVisible ? <AiFillEyeInvisible /> : <AiFillEye />}
+                </h2>
+                </div>
               </div>
 
               <div className="remember-me--forget-password">
@@ -98,11 +121,9 @@ function Login({ toast }) {
                     name="item"
                     className="checkbox-login"
                   />
-
                   <span className="text-checkbox">Remember me</span>
                 </div>
-
-                <p>forget password?</p>
+                <p className="para">forget password?</p>
               </div>
 
               <br />
