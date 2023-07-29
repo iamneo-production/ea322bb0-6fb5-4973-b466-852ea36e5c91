@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/jobs")
-@CrossOrigin("https://8081-fdaffbeddcdfefecdaaadaccdadddfabcfbf.project.examly.io")
+@CrossOrigin("https://8081-faefeebdfddcefecdaaadaccdadddfabcfbf.project.examly.io")
 public class JobsController {
     @Autowired
     private EmployersRepository employersRepository;
@@ -43,9 +43,7 @@ public class JobsController {
 
     @GetMapping
     public ResponseEntity<List<Jobs>> getAllJobs() {
-        // List<Jobs> jobs=  new ArrayList<>();
-        List<Jobs> jobs= jobsService.getAllJobs();
-        return ResponseEntity.ok(jobs);
+        return ResponseEntity.status(HttpStatus.OK).body(jobsService.getAllJobs());
     }
 
     @GetMapping(params = "id")
