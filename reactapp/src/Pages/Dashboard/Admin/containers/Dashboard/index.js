@@ -5,15 +5,30 @@ import "./index.css";
 import InterviewPrepImage from "../../assets/images/interviewprep.png";
 import { useEffect, useState } from "react";
 import adminService from "../../../../../services/adminService";
-function Dashboard({ setContent }) {
+/**
+ * The Dashboard component is a JavaScript function that renders a dashboard with statistics and cards
+ * displaying information.
+ * @returns The Dashboard component is being returned.
+ */
+function Dashboard() {
+  /*  This state variable is used to
+  store the statistics data that will be fetched from the server. The `setStatistics` function is
+  used to update the value of the `statistics` state variable. */
   const [statistics, setStatistics] = useState({});
-  useEffect(() => {
-    loadStatistics();
-  }, [statistics]);
 
+  /**
+   * The function `loadStatistics` is an asynchronous function that calls the `getStatistics` method
+   * from the `adminService` and passes the `setStatistics` function as a callback.
+   */
   const loadStatistics = async () => {
     adminService.getStatistics(setStatistics);
   };
+
+  /* The `useEffect` hook is used to perform side effects in a functional component. In this case, it is
+used to call the `loadStatistics` function when the `statistics` state variable changes. */
+  useEffect(() => {
+    loadStatistics();
+  }, [statistics]);
 
   return (
     <div>
@@ -48,6 +63,8 @@ function Dashboard({ setContent }) {
         direction="horizontal"
         style={{ columngap: "35px", width: "100%", margin: "10px 0" }}
       >
+        {/* The `<DashboardCard>` component is being used to display a statistic on the dashboard. It
+        takes in three props: `icon`, `title`, and `value`. */}
         <DashboardCard
           icon={
             <FaRegIdCard

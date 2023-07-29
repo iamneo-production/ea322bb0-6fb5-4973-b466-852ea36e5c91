@@ -18,7 +18,7 @@
   box-shadow: 0 0 20px 6px #090b6f85;
   margin: auto;
   width: 80%;
-  height: 80%;
+  height: 69%;
   position: absolute;
   top: 15%;
   left: 10%;
@@ -180,4 +180,15 @@ label input[type="checkbox"] {
 }
 .login-text {
   font-size: 45px !important;
+}
+.peye{
+  cursor: 'pointer';
+  text-align: right;
+  display: flex;
+}
+.eye{
+  margin-top: 25px;
+  position:absolute;
+  margin-left: 20%;
+  color: rgb(149, 145, 145);
 }

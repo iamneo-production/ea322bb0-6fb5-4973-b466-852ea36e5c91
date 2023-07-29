@@ -1,4 +1,6 @@
 import { FaUser } from "react-icons/fa";
+/* The `reportsData` constant is an array of objects. Each object represents a report and contains
+information such as the reporter's name, avatar, reported user's name, report time, and status. */
 const reportsData = [
   {
     key: 1,
