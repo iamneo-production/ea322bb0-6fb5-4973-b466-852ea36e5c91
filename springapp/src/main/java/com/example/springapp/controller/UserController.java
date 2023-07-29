@@ -14,8 +14,9 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("https://8081-fdaffbeddcdfefecdaaadaccdadddfabcfbf.project.examly.io")
+@CrossOrigin("https://8081-baedfefaabbaefecdaaadaccdadddfabcfbf.project.examly.io")
 public class UserController {
+
     @Autowired
     UserService userService;
     @PostMapping(path="/register")
@@ -41,6 +42,9 @@ public class UserController {
     }
     @PostMapping("/login")
     public ResponseEntity<Map<String,String>> loginUser(@RequestBody User user) {
+        // Map<String,String> map = new HashMap<>();
+
+        // map.put("Success","Hello");
         return ResponseEntity.status(HttpStatus.OK).body(userService.authentication(user));
     }
 }
