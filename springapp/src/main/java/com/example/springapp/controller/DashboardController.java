@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin("https://8081-faefeebdfddcefecdaaadaccdadddfabcfbf.project.examly.io")
+@CrossOrigin("https://8081-fadbdbfecafeceefecdaaadaccdadddfabcfbf.project.examly.io/")
 public class DashboardController {
     @Autowired
     JobsRepository jobsRepository;
