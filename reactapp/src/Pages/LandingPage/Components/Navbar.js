@@ -12,7 +12,7 @@ function Navbar() {
     <>
       <nav className="navbar" id="home-navbar">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-          <img src={icon} alt="ok" />
+          <img src={icon} alt="Job Portal" />
         </Link>
         <div className="menu-icon" onClick={handleClick}>
           {click ? <FaTimes /> : <FaBars />}

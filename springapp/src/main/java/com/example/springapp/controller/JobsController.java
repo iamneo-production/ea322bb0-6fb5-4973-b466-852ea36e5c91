@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/jobs")
-@CrossOrigin("https://8081-faefeebdfddcefecdaaadaccdadddfabcfbf.project.examly.io")
+@CrossOrigin("https://8081-afeaabfaaefecdaaadaccdadddfabcfbf.project.examly.io")
 public class JobsController {
     @Autowired
     private EmployersRepository employersRepository;
