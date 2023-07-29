@@ -8,32 +8,32 @@ function Role({ handleChange }) {
 
       <div>
         <label className="sidebar-label-container">
-          <input onChange={handleChange} type="radio" value="" name="role" />
+          <input onChange={handleChange} type="radio" value="" name="title" />
           <span className="checkmark "></span>All Roles
         </label>
         <Input
           handleChange={handleChange}
           value="Developer"
           title="Developer"
-          name="role"
+          name="title"
         />
         <Input
           handleChange={handleChange}
           value="IT-Support"
           title="IT-Support"
-          name="role"
+          name="title"
         />
         <Input
           handleChange={handleChange}
           value="Tester"
           title="Tester"
-          name="role"
+          name="title"
         />
         <Input
           handleChange={handleChange}
           value="Analyst"
           title="Analyst"
-          name="role"
+          name="title"
         />
       </div>
     </div>
