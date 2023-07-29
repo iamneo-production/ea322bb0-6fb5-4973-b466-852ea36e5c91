@@ -1,4 +1,3 @@
-//import Typography from '@material-ui/core/Typography'
 import { Badge, Space, Typography, Avatar, Menu, Drawer, Image } from "antd";
 import { BellFilled, DeleteTwoTone } from "@ant-design/icons";
 import { VscSignOut } from "react-icons/vsc";
@@ -7,16 +6,35 @@ import img from "../../assets/images/few.webp";
 import authService from "../../../../../services/auth";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
+/**
+ * The `AppHeader` function is a React component that renders a header for an admin dashboard,
+ * including a logo, title, notifications bell icon, and a menu with a logout option.
+ * @returns The `AppHeader` component is returning a JSX element that represents the header of an admin
+ * dashboard. It includes a logo, a title, a bell icon for notifications, and a menu with a logout
+ * option. It also includes a `Drawer` component that displays a list of notifications.
+ */
 function AppHeader() {
   const [userName] = useState("admin");
+  /* `const [open, setOpen] = useState(false);` is a line of code in the `AppHeader` component that
+  uses the `useState` hook to create a state variable called `open` and a corresponding setter
+  function called `setOpen`. */
   const [open, setOpen] = useState(false);
+  /*  The `navigate` function can be used to programmatically
+  navigate to different routes in the application. In this code, it is used in the `onClick` event
+  of the "Logout" menu item to navigate to the "/" route after logging out. */
   const navigate = useNavigate();
+  /**
+   * The function `showDrawer` sets the `open` state to `true`, while the function `onClose` sets the
+   * `open` state to `false`.
+   */
   const showDrawer = () => {
     setOpen(true);
   };
   const onClose = () => {
     setOpen(false);
   };
+  /* The `notifications` array is storing a list of notification objects. Each object represents a
+ notification and contains the following properties: */
   const notifications = [
     {
       image: img,
@@ -43,6 +61,9 @@ function AppHeader() {
       dateTime: "29 July 2020 - 02:26 PM",
     },
   ];
+
+  /* The `items` array is defining the menu items that will be displayed when the user clicks on the
+ avatar icon in the header. */
   const items = [
     {
       icon: (
@@ -72,6 +93,9 @@ function AppHeader() {
       ],
     },
   ];
+
+  /* The `notificationStyle` constant is an object that defines the CSS styles for the notification
+ items displayed in the `Drawer` component. */
   const notificationStyle = {
     cursor: "pointer",
     position: "relative",
