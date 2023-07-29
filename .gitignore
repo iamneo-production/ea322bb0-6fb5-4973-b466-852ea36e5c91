@@ -1,1 +1,7 @@
-bin/
+.settings/
+.project
+.classpath
+# node_modules/
+done
+bin
+backup.sql
