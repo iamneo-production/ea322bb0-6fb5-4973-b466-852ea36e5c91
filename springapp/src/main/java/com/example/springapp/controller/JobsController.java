@@ -44,10 +44,6 @@ public class JobsController {
     @GetMapping
     public ResponseEntity<List<Jobs>> getAllJobs() {
         return ResponseEntity.status(HttpStatus.OK).body(jobsService.getAllJobs());
-        //return new ResponseEntity 
-        // List<Jobs> jobs=  new ArrayList<>();
-        // List<Jobs> jobs= jobsService.getAllJobs();
-        // return ResponseEntity.ok(jobs);
     }
 
     @GetMapping(params = "id")
