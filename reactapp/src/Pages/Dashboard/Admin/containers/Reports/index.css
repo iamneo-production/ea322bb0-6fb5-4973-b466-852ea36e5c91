@@ -1,0 +1,4 @@
+.view-btn:hover,
+.delete-btn:hover {
+  cursor: pointer;
+}
