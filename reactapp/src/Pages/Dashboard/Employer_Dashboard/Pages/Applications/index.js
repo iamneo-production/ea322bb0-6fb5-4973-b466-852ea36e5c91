@@ -94,7 +94,7 @@ function ApplicationsReceived({ setContent, toast }) {
         <br />
         {hasData && (
           <Table
-            rowKey={(dataSource) => dataSource.id}
+            rowKey={(dataSource) => dataSource?.id}
             columns={columns}
             dataSource={dataSource}
             className="Applied_job_table"

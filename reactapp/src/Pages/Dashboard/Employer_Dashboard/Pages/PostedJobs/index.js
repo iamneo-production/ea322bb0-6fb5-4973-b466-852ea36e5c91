@@ -92,7 +92,7 @@ function PostedJobs({ setContent, toast }) {
           <p
             className="view-profile"
             onClick={() => {
-              setJobId(id.id);
+              setJobId(id?.id);
               showModal();
             }}
           >
@@ -101,7 +101,7 @@ function PostedJobs({ setContent, toast }) {
           <p
             className="view-profile"
             onClick={() => {
-              setToBeDeletedJob(id.id);
+              setToBeDeletedJob(id?.id);
               showDeleteModal();
             }}
           >
@@ -140,7 +140,7 @@ function PostedJobs({ setContent, toast }) {
         <br />
         {hasData && (
           <Table
-            rowKey={(dataSource) => dataSource.id}
+            rowKey={(dataSource) => dataSource?.id}
             columns={columns}
             dataSource={dataSource}
             className="Applied_job_table"

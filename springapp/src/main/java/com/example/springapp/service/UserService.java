@@ -28,7 +28,7 @@ public class UserService {
         return userRepository.findAll();
     }
     public Map<String,String> authentication(User user){
-        User u=userRepository.findByEmail(user.getUsername());
+        User u=userRepository.findByUsername(user.getUsername());
         Map<String,String> message = new HashMap<>();
         if(u==null) {
             message.put("message","Invalid Credentials");

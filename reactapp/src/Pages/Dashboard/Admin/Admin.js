@@ -1,6 +1,5 @@
 import { Layout } from "antd";
 import AppHeader from "./components/AppHeader";
-import AppFooter from "./components/AppFooter";
 import SideMenu from "./components/SideMenu";
 import PageContent from "./components/PageContent";
 import { useState } from "react";

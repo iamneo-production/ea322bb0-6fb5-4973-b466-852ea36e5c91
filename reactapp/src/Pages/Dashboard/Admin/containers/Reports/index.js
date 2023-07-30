@@ -170,7 +170,7 @@ function Reports() {
     },
   ];
   const handleDelete = (key) => {
-    let d = data.filter((item) => item.key !== key);
+    let d = data?.filter((item) => item.key !== key);
     setData(d);
   };
   useEffect(() => {

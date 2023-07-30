@@ -68,6 +68,7 @@ function JobSearchPage({ toast }) {
     return filteredProducts?.map(
       ({ id, employer, title, location, requirements, viewjob }) => (
         <Card
+        key={id}
           id={id}
           employer={employer?.name}
           role={title}
