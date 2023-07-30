@@ -1,13 +1,20 @@
 import { Menu } from "antd";
 import { AppstoreOutlined } from "@ant-design/icons";
 import { FaUser, FaRocketchat, FaUserTie } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import "./index.css";
 
+/**
+ * The SideMenu component is a JavaScript function that renders a side menu with different options and
+ * icons, and allows the user to set the content based on the selected option.
+ * @returns The SideMenu component is returning a div element with the className "SideMenu" and a style.
+ *  The Menu component renders a list of menu
+ * items with labels, icons, and keys.
+ */
 function SideMenu({ setContent }) {
-  const navigate = useNavigate();
   return (
     <div className="SideMenu" style={{ width: "240px", height: "100%" }}>
+      {/* The `Menu` component is rendering a list of menu items with labels, icons, and keys. It is used
+     in the `SideMenu` component to display a side menu with different options. */}
       <Menu
         className="SideMenu"
         onClick={(item) => {

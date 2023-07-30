@@ -54,9 +54,9 @@ function JobSearchPage({ toast }) {
       filteredProducts = filteredItems;
     }
 
-    if (newQuery?.role?.length > 0) {
+    if (newQuery?.title?.length > 0) {
       filteredProducts = filteredProducts?.filter(
-        ({ role }) => role === newQuery?.role
+        ({ title }) => title === newQuery?.title
       );
     }
 
@@ -68,7 +68,6 @@ function JobSearchPage({ toast }) {
     return filteredProducts?.map(
       ({ id, employer, title, location, requirements, viewjob }) => (
         <Card
-        key={id}
           id={id}
           employer={employer?.name}
           role={title}
