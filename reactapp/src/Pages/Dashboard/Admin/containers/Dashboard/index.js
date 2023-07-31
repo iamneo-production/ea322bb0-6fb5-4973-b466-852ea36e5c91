@@ -1,23 +1,34 @@
 import { FaRegIdCard, FaListAlt, FaUsers } from "react-icons/fa";
 import { FcOrganization } from "react-icons/fc";
-import { TbCategory } from "react-icons/tb";
-import { Statistic, Typography, Card, Space, Button } from "antd";
+import { Statistic, Typography, Card, Space } from "antd";
 import "./index.css";
 import InterviewPrepImage from "../../assets/images/interviewprep.png";
-import MultiCarousel from "../../components/Carousel";
 import { useEffect, useState } from "react";
-import axios from "axios";
-function Dashboard({ setContent }) {
-  const [companies, setCompanies] = useState([]);
+import adminService from "../../../../../services/adminService";
+/**
+ * The Dashboard component is a JavaScript function that renders a dashboard with statistics and cards
+ * displaying information.
+ * @returns The Dashboard component is being returned.
+ */
+function Dashboard() {
+  /*  This state variable is used to
+  store the statistics data that will be fetched from the server. The `setStatistics` function is
+  used to update the value of the `statistics` state variable. */
   const [statistics, setStatistics] = useState({});
+
+  /**
+   * The function `loadStatistics` is an asynchronous function that calls the `getStatistics` method
+   * from the `adminService` and passes the `setStatistics` function as a callback.
+   */
+  const loadStatistics = async () => {
+    adminService.getStatistics(setStatistics);
+  };
+
+  /* The `useEffect` hook is used to perform side effects in a functional component. In this case, it is
+used to call the `loadStatistics` function when the `statistics` state variable changes. */
   useEffect(() => {
     loadStatistics();
-  }, [companies, statistics]);
-
-  const loadStatistics = async () => {
-    const result = await axios.get("http://localhost:4000/admin/statistics");
-    setStatistics(result?.data);
-  };
+  }, [statistics]);
 
   return (
     <div>
@@ -36,7 +47,10 @@ function Dashboard({ setContent }) {
           ></div>
         }
       >
-        <Typography.Title level={4}> Welcome Admin</Typography.Title>
+        <Typography.Title level={4}>
+          {" "}
+          {`Welcome Admin (${localStorage.getItem("username")})`}
+        </Typography.Title>
         <p className="welcome-message">Today's Reports</p>
         <img
           src={InterviewPrepImage}
@@ -49,6 +63,8 @@ function Dashboard({ setContent }) {
         direction="horizontal"
         style={{ columngap: "35px", width: "100%", margin: "10px 0" }}
       >
+        {/* The `<DashboardCard>` component is being used to display a statistic on the dashboard. It
+        takes in three props: `icon`, `title`, and `value`. */}
         <DashboardCard
           icon={
             <FaRegIdCard
@@ -62,7 +78,7 @@ function Dashboard({ setContent }) {
             />
           }
           title={"Jobs Posted"}
-          value={statistics.jobsPosted}
+          value={statistics?.["job-posted"]}
         />
         <DashboardCard
           icon={
@@ -77,7 +93,7 @@ function Dashboard({ setContent }) {
             />
           }
           title={"Applications"}
-          value={statistics?.applications}
+          value={statistics?.["job-application"]}
         />
         <DashboardCard
           icon={
@@ -91,8 +107,8 @@ function Dashboard({ setContent }) {
               }}
             />
           }
-          title={"Companies"}
-          value={statistics?.companies}
+          title={"Employers"}
+          value={statistics?.employer}
         />
         <DashboardCard
           icon={
@@ -107,32 +123,9 @@ function Dashboard({ setContent }) {
             />
           }
           title={"Job Seekers"}
-          value={statistics?.jobSeekers}
+          value={statistics?.["job-seeker"]}
         />
       </Space>
-
-      <div className="top-category-carousel">
-        <div
-          className="top-category-head"
-          style={{
-            margin: "10px 0",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <h2 className="top-category-heading">All Companies</h2>
-          <Button
-            type="primary"
-            icon={<TbCategory />}
-            size={"large"}
-            onClick={() => setContent("CompanyProfile")}
-          >
-            View All Companies
-          </Button>
-        </div>
-        <MultiCarousel slides={companies} slidesToShow={4} />
-      </div>
     </div>
   );
 }

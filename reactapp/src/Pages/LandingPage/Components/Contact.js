@@ -1,5 +1,3 @@
-
-
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import "../Styles/Contact.css";
@@ -25,20 +23,18 @@ const Contact = () => {
         form.current,
         "b1MK9G5ZQdkcyuVAt"
       )
-       .then(
-               (result) => {
-                 console.log(result.text);
-                 setMessage("Message send Successfully"); // Set the success message
-                 form.current.reset(); // Reset the form fields
-              },
-              setTimeout(() => {
-                   setMessage("");
-                 }, 10000),
-               (error) => {
-                 console.log(error.text);
-                 setMessage("Error sending message"); // Set the error message
-               }
-            );
+      .then(
+        (result) => {
+          setMessage("Message send Successfully"); // Set the success message
+          form.current.reset(); // Reset the form fields
+        },
+        setTimeout(() => {
+          setMessage("");
+        }, 10000),
+        (error) => {
+          setMessage("Error sending message"); // Set the error message
+        }
+      );
   };
 
   const handleInputChange = () => {
@@ -47,14 +43,13 @@ const Contact = () => {
   };
 
   return (
-    <>
+    <div id="contact">
       <Navbar />
       <div className="page">
         <h1>Contact Us</h1>
         <p>Have a question, need assistance? We're just a message away!</p>
-        <form ref={form} onSubmit={sendEmail}>
+        <form ref={form} id="contact-form" onSubmit={sendEmail}>
           <label>Name</label>
-          
           <input
             type="text"
             name="user_name"
@@ -63,7 +58,7 @@ const Contact = () => {
           />
           <br />
           <label>Email</label>
-            <input
+          <input
             type="email"
             name="user_email"
             required
@@ -82,9 +77,8 @@ const Contact = () => {
         <p>{message}</p>
       </div>
       {!isHomePage && <Footer />}
-    </>
+    </div>
   );
 };
 
 export default Contact;
-

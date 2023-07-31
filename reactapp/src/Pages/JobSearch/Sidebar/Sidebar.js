@@ -6,8 +6,10 @@ const Sidebar = ({ handleChange }) => {
   return (
     <>
       <section className="sidebar">
-        <Role handleChange={handleChange} />
-        <Location handleChange={handleChange} />
+        <div className="filter-options-menu">
+          <Role handleChange={handleChange} />
+          <Location handleChange={handleChange} />
+        </div>
       </section>
     </>
   );

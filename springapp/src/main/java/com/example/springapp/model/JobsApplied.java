@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class JobsApplied {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @JsonIgnore
@@ -38,7 +38,6 @@ public class JobsApplied {
         this.id = id;
     }
 
-//    @JsonBackReference
     public JobSeekers getJobSeekers() {
         return jobSeekers;
     }
@@ -47,7 +46,6 @@ public class JobsApplied {
         this.jobSeekers = jobSeekers;
     }
 
-//    @JsonBackReference
     public Jobs getJobs() {
         return jobs;
     }

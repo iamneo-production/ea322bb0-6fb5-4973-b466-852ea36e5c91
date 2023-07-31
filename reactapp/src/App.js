@@ -1,52 +1,35 @@
-import './App.css';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-// import Jobs from './Pages/JobDetails/Components/Jobs';
-// import JobDetails from './Pages/JobDetails/Components/JobDetails';
-// import AdminPage from "./Pages/Dashboard/Admin/Admin";
-// import HomePage from "./Pages/Signuplogindetails/Components/HomePage/HomePage";
-// import Login from "./Pages/Signuplogindetails/Components/LoginPage/Login";
-// import SignUpPage from "./Pages/Signuplogindetails/Components/SignUpPage/Signup";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AdminPage from "./Pages/Dashboard/Admin/Admin";
+import Login from "./Pages/Signuplogindetails/Components/LoginPage/Login";
+import SignUpPage from "./Pages/Signuplogindetails/Components/SignUpPage/Signup";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import JobSearchPage from './Pages/JobSearch/JobSearchPage';
-import EmployerEditProfile from './Pages/Employer/Components/EmployerEditProfile';
-import EmployerProfile from './Pages/Employer/Components/EmployerProfile';
-import Home1 from "./Pages/LandingPage/Components/Home";
-import About from "./Pages/LandingPage/Components/About";
- import Service from "./Pages/LandingPage/Components/Service";
-import Signup from "./Pages/LandingPage/Components/Signup";
-import Contact from "./Pages/LandingPage/Components/Contact";
-import Login1 from "./Pages/LandingPage/Components/Login";
-import Errorpage from './Pages/LandingPage/Components/Errorpage';
-
+import Home from "./Pages/LandingPage/Components/Home";
+import Errorpage from "./Pages/LandingPage/Components/Errorpage";
+import JobseekerDashboard from "./Pages/Dashboard/Jobseeker_Dashboard/JobseekerDashboard";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Registration from "./Pages/Registration/Registration";
+import EmployerDashboard from "./Pages/Dashboard/Employer_Dashboard/EmployerDashboard";
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Routes> */}
-          {/* <Route exact path="/" element={<Jobs/>} />
-          <Route exact path="/JobDetails/:id" element={<JobDetails/>} /> */}
-
-          {/* <Route path='/' element = {<AdminPage/>}/> */}
-
-          {/* <Route path='/' element ={<HomePage/>}/>
-          <Route path='/signup' element ={<SignUpPage/>}/>  
-          <Route path='/login' element ={<Login/>}/>  */}
-          {/* <Routes>
-          <Route path="/empeditprofile" element={<EmployerEditProfile />} />
-          <Route path="/empprofile/:id" element={<EmployerProfile />} />
-          </Routes> */}
-          {/* <JobSearchPage />  */}
-          <Routes>
-          <Route path="/" element={<Home1 />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/service" element={<Service />} />
-        <Route path="/sign-up" element={<Signup />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login1 />} />
-        <Route path="/*" element={<Errorpage/>}/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login toast={toast} />} />
+          <Route path="/signup" element={<SignUpPage toast={toast} />} />
+          <Route path="/admin/dashboard" element={<AdminPage />} />
+          <Route path="/employer" element={<EmployerDashboard />} />
+          <Route path="/job-seeker" element={<JobseekerDashboard />} />
+          <Route
+            path="/registration"
+            element={<Registration toast={toast} />}
+          />
+          <Route path="/*" element={<Errorpage />} />
         </Routes>
-        {/* </Routes> */}
-      </Router>   
+        <ToastContainer />
+      </Router>
     </div>
   );
 }

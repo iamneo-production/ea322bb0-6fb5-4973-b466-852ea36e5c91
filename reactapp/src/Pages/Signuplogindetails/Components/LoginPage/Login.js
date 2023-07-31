@@ -1,164 +1,118 @@
-import classes from "./login.module.css"
+import { FacebookOutlined, TwitterCircleFilled } from "@ant-design/icons";
+import "./login.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { Dropdown } from "../Select/Select";
-import img15 from '../../Assets/img15.jpg';
-import {VscAccount} from 'react-icons/vsc';
-import { IoMdLogIn } from "react-icons/io";
-import axios from "axios";
+import userService from "../../../../services/userService";
 
-
-
-function Login() {
-    const [role, setRole] = useState('admin');
-    let navigate = useNavigate();
-    function loginhandler() {
-        navigate('/signup');
-    }
-    
-    const options = [
-        {
-            value: 'employer',
-            label: 'Employer',
-        },
-        {
-            value: 'jobseeker',
-            label: 'Job seeker',
-        },
-        {
-            value: 'admin',
-            label: 'Admin',
-        },
-    ];
-
-    const [formValues, setFormValues] = useState({
-        email: '',
-        psd: '',
-        role: 'Admin'
-    });
-
-    const [formErrors, setFormErrors] = useState({
-        email: '',
-        psd: '',
-        
-    });
-     
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
-        let errorMessage = '';
-        if (name === 'email' && !validateEmail(value)) {
-            errorMessage = 'Email format is invalid';
-        
-        } else if (name === 'psd'&& value.length < 8) {
-            errorMessage = 'Password should be at least 8 characters';
-
-        } 
-        setFormErrors({ ...formErrors, [name]: errorMessage });
-    };
-
-    const CheckUser1=()=>{
-        // validatedetails()
-        if (Object.values(formErrors).every(error => error === '')){
-        const apiuser="http://localhost:8080/user/check/"+formValues.email
-        axios.get(apiuser)
-                .then(res => {
-                    if(res.data){
-                       const apipcheck="http://localhost:8080/user/checkpassword/"+formValues.email+ "/" +formValues.psd
-                       axios.get(apipcheck)
-                       .then((response)=>{
-                        if(response.data){
-                            alert("Login success")
-                            setFormValues({
-                                email: '',
-                                psd: '',
-                                role: 'Admin'
-                            })
-                        }else{
-                            alert("Password is not correct")
-                        }
-                       })
-                    }
-                    else{
-                        alert("Email not exist")
-                    }    
-                })
-                .catch(err => (console.log(err)))
-    };
-}
-
-    const selectRole = (value) => {
-        setRole(value);  
-    }
-    const validateEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formValues = {
-            mail: e.target.email.value,
-            password:e.target.psd.value,
-            role:role
+function Login({ toast }) {
+  const navigate = useNavigate();
+  function loginhandler() {
+    navigate("/signup");
+  }
+  const onLogin = (response) => {
+    if (response === 200) {
+      toast.success("Login Successful !!!");
+      let currentRole = localStorage.getItem("role");
+      let jobSeekerName = localStorage.getItem("jobSeekerName");
+      let employerName = localStorage.getItem("employerName");
+      if (
+        (currentRole === "jobseeker" && jobSeekerName === null) ||
+        (currentRole === "employer" && employerName === null)
+      ) {
+        navigate("/registration");
+      } else {
+        if (currentRole === "jobseeker") {
+          navigate("/job-seeker");
+        } else if (currentRole === "employer") {
+          navigate("/employer");
+        } else {
+          navigate("/admin/dashboard");
         }
-        if (Object.values(formErrors).every(error => error === '')){
-            
-        console.log(formValues);
-        } else{
-            console.log("form a errors  please check them");
-        }
+      }
+    } else {
+      toast.error("Invalid Credentials!");
     }
-    const[show, setShow]=useState(false)
-    const handleShow=()=>{
-        setShow(!show)
-    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formValues = {
+      username: e?.target?.username?.value,
+      password: e?.target?.password?.value,
+      role: e?.target?.role?.value,
+    };
 
-    return (
-        <div className={classes.main} style={{ backgroundImage: `url(${img15})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}>
-            <div className={classes.bottom}>
-                <fieldset className={classes.field}>
-                    <div className={classes.in}>
-                    <h3 className={classes.account}><VscAccount /></h3>
-                    <h1 className={classes.loginhead}>Login</h1>    
-                    <form onSubmit={handleSubmit}>
-                    <div className={classes.formlayout}>
-                        <div>
-                        <label className="role">Select a role</label>
-                            <Dropdown placeholder={'Select a Role'}  defaultValue={'Admin'} options={options} onChange={selectRole}  />
-                        </div>
-                            
-                            <label className={classes.lab} style={{marginTop:"1%"}}>Enter mail</label>
-                                <input className={classes.in1} name="email" type="text" placeholder="Enter email" value={formValues.email} onChange={handleInputChange} required="required"></input>
-                                {formErrors.email && <p className={classes.errorMessage}>{formErrors.email}</p>}
-
-                            <label className={classes.lab} style={{marginTop:"-2%"}}>Enter password</label>
-                                <input className={classes.in2} name="psd" type={show?"text":"password"} placeholder="Enter password" value={formValues.psd} onChange={handleInputChange} required="required"></input>
-                                <label  className={classes.showhide} onClick={handleShow}>{show?"Hide":"show"}</label>
-                                {formErrors.psd && <p className={classes.errorMessage}>{formErrors.psd}</p>}
-
-                            <a className={classes.psd} href='forgotpassword.js'>Forgot Password?</a>
-                            </div>
-                            <div className={classes.btnsContainer}>
-                            <button
-                                className={classes.in3}
-                                type="submit"
-                                value="Login"
-                                onClick={() => CheckUser1()}
-                            >
-                                 <span style={{marginTop:"-7%"}}>Login</span><span className={classes.loginsym}></span><IoMdLogIn /> 
-                            </button>
-                            <button className={classes.in4} onClick={loginhandler}>Don't have an account? Create now</button>
-                            </div>
-                        </form>
-                    </div>
-                </fieldset>
+    console.log(formValues);
+    userService.loginUser(formValues, onLogin);
+  };
+  return (
+    <>
+      <div className="login-form-body">
+        <div className="box-form">
+          <div className="left">
+            <div className="overlay">
+              <h1>Virtusa Jobs</h1>
+              <p>Making new job opportunities every day</p>
             </div>
+          </div>
+          <div className="right">
+            <h5 className="login-text">Login</h5>
+            <p>
+              Don't have an account? <br />
+              <span className="create-account-option" onClick={loginhandler}>
+                Create Your Account
+              </span>{" "}
+              it takes less than a minute
+            </p>
+            <form onSubmit={handleSubmit}>
+              <div className="inputs">
+                <select id="role" name="role" className="select">
+                  <option value="admin" className="select-option">
+                    Admin
+                  </option>
+                  <option value="jobseeker" className="select-option">
+                    Job Seeker
+                  </option>
+                  <option value="employer" className="select-option">
+                    Employer
+                  </option>
+                </select>
+                <input
+                  name="username"
+                  type="email"
+                  placeholder="Enter your Email Id"
+                  pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                />
+                <br />
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Enter your Password"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                />
+              </div>
+
+              <div className="remember-me--forget-password">
+                <div>
+                  <input
+                    type="checkbox"
+                    name="item"
+                    className="checkbox-login"
+                  />
+
+                  <span className="text-checkbox">Remember me</span>
+                </div>
+
+                <p>forget password?</p>
+              </div>
+
+              <br />
+              <button className="login-button">Login</button>
+            </form>
+          </div>
         </div>
-    );
+      </div>
+    </>
+  );
 }
 
 export default Login;
-
-
-

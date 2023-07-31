@@ -19,11 +19,11 @@ public class Jobs {
     private String requirements;
     private String location;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "employer_id")
     private Employer employer;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "jobs",cascade = CascadeType.ALL)
     private List<JobsApplied> jobsApplied;
 
@@ -90,8 +90,6 @@ public class Jobs {
         this.location = location;
     }
 
-    @JsonBackReference
-//    @JsonManagedReference
     public Employer getEmployer() {
         return employer;
     }
@@ -100,7 +98,7 @@ public class Jobs {
         this.employer = employer;
     }
 
-//    @JsonManagedReference
+    @JsonIgnore
     public List<JobsApplied> getJobsApplied() {
         return jobsApplied;
     }
@@ -117,7 +115,7 @@ public class Jobs {
                 ", description='" + description + '\'' +
                 ", requirements='" + requirements + '\'' +
                 ", location='" + location + '\'' +
-                ", employer=" + employer +
+                // ", employer=" + employer +
                 ", jobsApplied=" + jobsApplied +
                 '}';
     }

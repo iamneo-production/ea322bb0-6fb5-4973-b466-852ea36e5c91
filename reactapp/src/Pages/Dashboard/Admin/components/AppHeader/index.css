@@ -1,0 +1,63 @@
+.AppHeader {
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  scroll-behavior: smooth;
+  border-bottom: 0.5px solid rgba(1, 5, 12, 0.15);
+  padding-right: 30px;
+  padding-bottom: 1px;
+  padding-top: 1px;
+
+  /** Apphearder Background color effect**/
+  background: rgba(33, 38, 29, 1);
+  background: -moz-linear-gradient(
+    left,
+    rgba(33, 38, 29, 1) 19%,
+    rgba(54, 59, 50, 1) 44%,
+    rgba(79, 85, 75, 1) 74%,
+    rgba(101, 107, 97, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    right top,
+    color-stop(19%, rgba(33, 38, 29, 1)),
+    color-stop(44%, rgba(54, 59, 50, 1)),
+    color-stop(74%, rgba(79, 85, 75, 1)),
+    color-stop(100%, rgba(101, 107, 97, 1))
+  );
+  background: -webkit-linear-gradient(
+    left,
+    rgba(33, 38, 29, 1) 19%,
+    rgba(54, 59, 50, 1) 44%,
+    rgba(79, 85, 75, 1) 74%,
+    rgba(101, 107, 97, 1) 100%
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(33, 38, 29, 1) 19%,
+    rgba(54, 59, 50, 1) 44%,
+    rgba(79, 85, 75, 1) 74%,
+    rgba(101, 107, 97, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    left,
+    rgba(33, 38, 29, 1) 19%,
+    rgba(54, 59, 50, 1) 44%,
+    rgba(79, 85, 75, 1) 74%,
+    rgba(101, 107, 97, 1) 100%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(33, 38, 29, 1) 19%,
+    rgba(54, 59, 50, 1) 44%,
+    rgba(79, 85, 75, 1) 74%,
+    rgba(101, 107, 97, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#21261d', endColorstr='#656b61', GradientType=1 );
+
+  -webkit-box-shadow: 0px 13px 20px -13px rgba(209, 209, 209, 1);
+  -moz-box-shadow: 0px 13px 20px -13px rgba(209, 209, 209, 1);
+  box-shadow: 0px 13px 20px -13px rgba(209, 209, 209, 1);
+}

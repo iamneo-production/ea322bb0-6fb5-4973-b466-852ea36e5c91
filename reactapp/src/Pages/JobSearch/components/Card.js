@@ -1,12 +1,19 @@
-import Link from "antd/es/typography/Link";
-
-const Card = ({ company, role, location, posteddate, viewjob }) => {
+const Card = ({
+  showModal,
+  setJobId,
+  id,
+  employer,
+  role,
+  location,
+  requirements,
+  setAlreadyApplied,
+}) => {
   return (
     <>
-      <section className="card">
+      <section className="jobcard">
         <div className="company">
-          <b>Company: </b>
-          {company}
+          <b>Employer: </b>
+          {employer}
         </div>
         <div className="role">
           <b>Role: </b>
@@ -16,12 +23,26 @@ const Card = ({ company, role, location, posteddate, viewjob }) => {
           <b>Location: </b>
           {location}
         </div>
-        <div className="posteddate">
-          <b>Posted On: </b>
-          {posteddate}
+        <div
+          className="requirements"
+          style={{ height: "50px", textOverflow: "ellipsis" }}
+        >
+          <b>Requirements </b>
+          {requirements}
         </div>
         <div className="viewjob">
-          <Link href={viewjob}>View Job</Link>
+          <p
+            className="viewJobDetails"
+            onClick={() => {
+              setAlreadyApplied(
+                localStorage.getItem("jobsApplied")?.includes(String(id))
+              );
+              setJobId(id);
+              showModal();
+            }}
+          >
+            View Job
+          </p>
         </div>
       </section>
     </>
